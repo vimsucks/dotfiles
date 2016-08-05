@@ -1,13 +1,10 @@
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
+# Set name of the theme to load.  Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-#ZSH_THEME="ys"
-
+ZSH_THEME="half-life"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -17,7 +14,7 @@ ZSH_THEME="agnoster"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -29,10 +26,10 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -51,31 +48,17 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git themes d colorize catimg wd vi-mode zsh-syntax-highlighting extract)
+plugins=(git colorize wd vi-mode extract autojump zsh-autosuggestions zsh-completions)
 
 # User configuration
 
-if [[ ($COLORTERM == gnome-terminal || $(cat /proc/$PPID/cmdline) == *gnome-terminal* )
-    && $TERM != screen* ]]; then
-    export TERM=xterm-256color
-fi
-
-if [ -n "$WINDOWID" ]; then
-    TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 80 / 100)))
-    xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"
-fi
-
-
-PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p%{$fg[cyan]%}%d %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}% %{$reset_color%}>'
-
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/home/sice/.autojump/bin:/home/sice/.autojump/bin:/home/sice/bin:/usr/local/bin:/home/sice/.autojump/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -98,23 +81,45 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias nv="nvim"
 alias grep="grep --color=auto"
 alias tree="tree -C"
 alias youp="you-get -p vlc"
 alias c11="clang++ -std=c++11 -Wall -Weffc++ -Wextra -pedantic -O3"
 alias hsleep="sudo systemctl hybrid-sleep"
 alias pacs="sudo pacman -Syyu"
-alias -s cpp=vim
-alias -s py=python3
-alias -s md=vim
-alias -s txt=vim
-alias -s html=vim
-alias -s gz="tar -zxvf"
-alias -s tgz="tar -zxvf"
-alias -s rar='unrar'
-alias -s zip='unzip'
-#alias tmux="tmux -2 attach"
+alias pacr="sudo pacman -Rsc"
+alias flux="xflux -l 43.8276 -g 125.3095"
+alias ccat="pygmentize -g -O style=monokai -f console256"
+alias tmuxa="tmux attach"
+
+# User configuration
+
+eval $(thefuck --alias)
+
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+[[ -s /home/sice/.autojump/etc/profile.d/autojump.sh ]] && source /home/sice/.autojump/etc/profile.d/autojump.sh
+
+bindkey '^ ' autosuggest-accept
+
+if [[ ($COLORTERM == gnome-terminal || $(cat /proc/$PPID/cmdline) == *gnome-terminal* )
+		&& $TERM != screen* ]]; then
+		export TERM=xterm-256color
+fi
+
+if [ -n "$WINDOWID" ]; then
+		TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 80 / 100)))
+		xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"
+fi
+
+# virtualenvwrapper
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+	source /usr/bin/virtualenvwrapper.sh
+fi
+
+autoload -U compinit && compinit
 
 #source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -11,13 +11,13 @@ Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'luochen1990/rainbow'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'vimball'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'EasyGrep'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight' 
 Plug 'Chiel92/vim-autoformat'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'klen/python-mode'
@@ -27,7 +27,6 @@ Plug 'vim-scripts/TaskList.vim'
 Plug 'sjl/gundo.vim'
 Plug 'bash-support.vim'
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
 call plug#end()
 
 " Show line number, command, status line
@@ -52,7 +51,7 @@ set shortmess=atI
 "syntax and theme
 syntax on
 set background=dark
-colorscheme dracula
+colorscheme gruvbox
 set cursorline
 set cursorcolumn
 
@@ -149,10 +148,30 @@ let g:user_emmet_install_global = 0
   let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " rainbow parentheses
-let g:rainbow_active = 1
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 
-"Airline
-let g:airline_theme = 'dracula'
+"Airline 
+let g:airline_theme = 'luna'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 1
