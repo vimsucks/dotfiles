@@ -1,3 +1,6 @@
+" auto load .vimrc when it is edited
+autocmd! bufwritepost .vimrc source $MYVIMRC
+
 set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
@@ -28,6 +31,7 @@ Plug 'sjl/gundo.vim'
 Plug 'bash-support.vim'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim'
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 " Show line number, command, status line

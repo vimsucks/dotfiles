@@ -1,0 +1,38 @@
+[global]
+    font = "WenQuanYi Zen Hei10"
+    allow_markup = yes
+    format = "<b>%s %p</b>\n%b"
+    sort = yes
+    indicate_hidden = true
+    # geometry = "x5"
+    idle_threshold = 0
+    geometry = "300x5-20+20"
+    alignment = center
+    show_age_threshold = 60
+    sticky_history = yes
+    follow = mouse
+    word_wrap = yes
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 10
+    separator_color = frame
+
+
+[frame]
+    width = 3
+    color = "#47475c"
+
+[urgency_low]
+		foreground = "#b9c2cd"
+    background = "#2f343f"
+    timeout = 3
+
+[urgency_normal]
+		foreground = "#ffffff"
+    background = "#666684"
+    timeout = 6
+
+[urgency_critical]
+		background = "#2f343f"
+    foreground = "#34e2d4"
+    timeout = 0

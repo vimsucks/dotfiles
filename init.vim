@@ -12,7 +12,8 @@ Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'python'] }
 Plug 'Mizuchi/STL-Syntax'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
-Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes Plug 'Yggdroot/indentLine'  " 缩进对齐线
+Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
+Plug 'Yggdroot/indentLine'  " 缩进对齐线
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -32,6 +33,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'  " colorscheme
 Plug 'tomasr/molokai'
 Plug 'dracula/vim'
+Plug 'godlygeek/csapprox'
 call plug#end()
 
 "==========================================================================================
@@ -61,7 +63,7 @@ set novisualbell
 set shortmess=atI
 
 "syntax and theme
-"set t_Co=256
+set t_Co=256
 syntax on
 set background=dark
 "colorscheme gruvbox
@@ -69,6 +71,8 @@ colorscheme dracula
 "colorscheme dracula
 set cursorline
 set cursorcolumn
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 "Configure backspace to be able to acrosS two lines
 set backspace=2
@@ -112,6 +116,9 @@ set iskeyword+=_,$,@,%,#,-,.
 set nofoldenable
 set fdm=indent
 "set fdm=syntax
+"
+
+set shell=bash
 
 "==========================================================================================
 "
@@ -146,9 +153,13 @@ let g:user_emmet_leader_key ='<C-y>'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+" auto-pairs
+autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
+
 "pymode
 let g:pymode = 1
-let g:pymode_options_max_line_length = 100
+let g:pymode_options_max_line_length = 90
+"autocmd FileType python set colorcolumn=90
 let g:pymode_quickfix_minheight = 1
 let g:pymode_quickfix_maxheight = 2
 let g:pymode_pyton = 'python3'
@@ -156,7 +167,7 @@ let g:pymode_lint_on_write = 1
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_message = 1
 let g:pymode_lint_cwindow = 1
-let g:pymode_lint_checkers = 'pep8'
+let g:pymode_lint_checkers = 'pyflakes'
 let g:pymode_run = 0
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 1
@@ -255,7 +266,7 @@ endfunction
 function! CompileAndRun()
 	exec "w"
 	if &filetype == "c"
-		exec "te g++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+		exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
 	elseif &filetype == "cpp"
 		exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
 	elseif &filetype == "python"
@@ -294,12 +305,14 @@ map <C-[> <Esc>
 imap <C-l> <delete>
 "nnoremap <leader>fu :CtrlPFunky<CR>
 noremap <leader><C-P> :CtrlPFunky<CR>
+" close buffer
+nnoremap <leader>w :w<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 " next buffer
 nnoremap <leader>n :bn<CR>
 " previous buffer
 nnoremap <leader>p :bp<CR>
 " close buffer
-nnoremap <leader>c :bd<CR>
 nnoremap <leader>w :w<CR>
 autocmd FileType c,cs,cpp,sh,ruby,python,scheme nnoremap <leader>r :call CompileAndRun()<CR>
 nnoremap <leader>td :TaskList<CR>
