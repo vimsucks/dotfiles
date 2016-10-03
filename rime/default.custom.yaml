@@ -13,8 +13,8 @@ patch:
     punctuator:
       import_preset: symbols
     schema_list:           #“输入选单”中激活的输入方案定义。
-        - schema: flypy_double
-        #- schema: hepy
+        #- schema: flypy_double
+        - schema: hepy
         - schema: double_pinyin_flypy
         - schema: luna_pinyin_simp
     "key_binder/bindings":
