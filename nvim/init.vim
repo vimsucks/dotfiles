@@ -8,7 +8,7 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/ListToggle'
-Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'python'] }
+Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'python', 'javascript'] }
 Plug 'Mizuchi/STL-Syntax'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
@@ -34,6 +34,7 @@ Plug 'morhetz/gruvbox'  " colorscheme
 Plug 'tomasr/molokai'
 Plug 'dracula/vim'
 Plug 'godlygeek/csapprox'
+Plug 'ternjs/tern_for_vim'
 call plug#end()
 
 "==========================================================================================
@@ -281,6 +282,10 @@ function! CompileAndRun()
 		exec "te mcs % -out:/tmp/a.exe && /tmp/a.exe"
 	elseif &filetype == "scheme"
 		exec "te csc % -o /tmp/a.out && /tmp/a.out"
+	elseif &filetype == "javascript"
+		exec "te node %"
+	elseif &filetype == "haskell"
+		exec "te ghc % && ./%:t:r"
 	endif
 endfunction
 
@@ -314,5 +319,5 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 " close buffer
 nnoremap <leader>w :w<CR>
-autocmd FileType c,cs,cpp,sh,ruby,python,scheme nnoremap <leader>r :call CompileAndRun()<CR>
+autocmd FileType c,cs,cpp,sh,ruby,python,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
 nnoremap <leader>td :TaskList<CR>
