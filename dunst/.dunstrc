@@ -25,14 +25,18 @@
 [urgency_low]
 		foreground = "#b9c2cd"
     background = "#2f343f"
-    timeout = 3
+    timeout = 10
 
 [urgency_normal]
 		foreground = "#ffffff"
     background = "#666684"
-    timeout = 6
+    timeout = 4
 
 [urgency_critical]
 		background = "#2f343f"
     foreground = "#34e2d4"
     timeout = 0
+
+/*[sound]*/
+		/*summary = "*"*/
+		/*script = /home/sice/Scripts/.dunst_noti.sh*/

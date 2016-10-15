@@ -9,6 +9,7 @@ set GOPATH ~/go
 set WORKON_HOME ~/.virtualenvs
 set -x fish_user_paths $HOME/Scripts $HOME/.gem/ruby/2.3.0/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $PATH $GOPATH/bin /home/sice/.node_modules/bin /home/sice/.cabal/bin $fish_user_paths
 
+set -x EDITOR nvim
 
 set -x LANG en_US.UTF-8
 set -x LC_NUMERIC en_US.UTF-8

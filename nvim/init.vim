@@ -35,6 +35,8 @@ Plug 'tomasr/molokai'
 Plug 'dracula/vim'
 Plug 'godlygeek/csapprox'
 Plug 'ternjs/tern_for_vim'
+"Plug 'paredit.vim'
+"Plug 'slimv.vim'
 call plug#end()
 
 "==========================================================================================
@@ -237,6 +239,10 @@ au BufWrite * : Autoformat
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_removing_trailing_spaces = 0
+
+" slimv
+let g:slimv_impl = 'clisp'
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CLISP "clisp -i ~/.config/nvim/plugged/slimv.vim/slime/start-swank.lisp"'
 
 "==========================================================================================
 "
