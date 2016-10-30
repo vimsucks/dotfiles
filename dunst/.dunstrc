@@ -36,7 +36,3 @@
 		background = "#2f343f"
     foreground = "#34e2d4"
     timeout = 0
-
-/*[sound]*/
-		/*summary = "*"*/
-		/*script = /home/sice/Scripts/.dunst_noti.sh*/

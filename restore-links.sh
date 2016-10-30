@@ -8,6 +8,8 @@ ln -s ~/Dropbox/dotfiles/nvim/init.vim ~/.nvimrc --force
 ln -s ~/Dropbox/dotfiles/rime/default.custom.yaml ~/.config/fcitx/rime/ --force
 ln -s ~/Dropbox/dotfiles/tmux/.tmux.conf ~ --force
 ln -s ~/Dropbox/dotfiles/vim/.vimrc ~/ --force
+ln -s ~/Dropbox/dotfiles/dunst/.dunstrc ~/ --force
 ln -s ~/Dropbox/dotfiles/YouCompleteMe/.ycm_extra_conf.py ~/ --force
 ln -s ~/Dropbox/dotfiles/zsh/.zshrc ~ --force
+ln -s ~/Dropbox/dotfiles/xorg/.Xresources ~ --force
 echo "Restore soft links complete!"

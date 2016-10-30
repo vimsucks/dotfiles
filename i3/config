@@ -16,7 +16,7 @@
 exec --no-startup-id xcompmgr &
 exec_always ~/Scripts/hMonitor.sh
 # 设置透明须先安装xcompmgr，并在此指定软件和透明度（默认0.75），sleep保证transset在其所设置的软件之后启动，根据情况调节大小
-exec --no-startup-id bash transset-df -n i3bar 0.65
+exec --no-startup-id sleep 1;and bash transset-df -n i3bar 0.65
 # 建议另外指定一个脚本来启动通用的开机自启项目
 exec --no-startup-id $HOME/Scripts/i3-startup.sh
 exec --no-startup-id xset dpms 600
@@ -162,9 +162,9 @@ set $mode_system 系统:锁屏(L) 注销(O) 休眠(S) 关机(H) 重启(R) 取消
 bindsym $mod+p mode "$mode_system"
 mode "$mode_system" {
     #bindsym l exec i3lock -c '#333333', exec sleep .1 && exec xset dpms force off, mode "default"
-		bindsym l exec bash i3lock-wrapper , exec sleep .1 && exec xset dpms force off, mode "default"
+		bindsym l exec bash i3lock-wrapper -nuel, exec sleep .1 && exec xset dpms force off, mode "default"
     bindsym o exec i3-msg exit
-		bindsym s exec bash i3lock-wrapper; exec systemctl hibernate , mode "default"
+		bindsym s exec bash i3lock-wrapper -nuel; exec systemctl hibernate , mode "default"
     bindsym h exec systemctl poweroff
     bindsym r exec systemctl reboot
     bindsym Escape mode "default"
@@ -207,7 +207,7 @@ bindsym $mod+m bar mode toggle
 bar {
     # i3bar调用
 		#
-    status_command conky -c $HOME/.config/i3/conkyrc_bar
+    status_command conky -c $HOME/.config/i3/conkyrc
 		i3bar_command i3bar -t
 		height 24
 		output eDP1

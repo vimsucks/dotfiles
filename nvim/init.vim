@@ -8,8 +8,7 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/ListToggle'
-Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'python', 'javascript'] }
-Plug 'Mizuchi/STL-Syntax'
+Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'javascript'] }
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
@@ -22,19 +21,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky' " Key: <leader>fu
 "Plug 'EasyGrep'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'klen/python-mode' , { 'for' : 'python'}
-Plug 'surround.vim'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'tasklist.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'Chiel92/vim-autoformat'
-Plug 'morhetz/gruvbox'  " colorscheme
-Plug 'tomasr/molokai'
 Plug 'dracula/vim'
-Plug 'godlygeek/csapprox'
-Plug 'ternjs/tern_for_vim'
+Plug 'fcitx.vim'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -172,9 +163,9 @@ let g:pymode_lint_message = 1
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = 'pyflakes'
 let g:pymode_run = 0
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_complete_on_dot = 1
 let g:pymode_rope_completion_bind = '<C-Space>'
 let g:pymode_rope_autoimport = 0
 let g:pymode_syntax = 1
@@ -233,12 +224,6 @@ let g:tlWindowPosition = 1
 let g:UltiSnipsExpandTrigger="<C-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" vim-autoformat
-au BufWrite * : Autoformat
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_removing_trailing_spaces = 0
 
 " slimv
 let g:slimv_impl = 'clisp'

@@ -1,25 +1,18 @@
 patch:
-  #"ascii_composer/good_old_caps_lock": true
-  #"ascii_composer/switch_key":
-    #Caps_Lock: commit_code
-    #Control_L: commit_code
-    #Control_R: noop
-    #Shift_L: noop
-    #Shift_R: commit_code
-    menu/page_size: 7  #设置候选字数量，根据喜好调整。
-    ascii_composer:
-      switch_key:
-        Shift_L: clear
-    punctuator:
-      import_preset: symbols
-    schema_list:           #“输入选单”中激活的输入方案定义。
-        - schema: flypy_double
-        #- schema: hepy
-        - schema: double_pinyin_flypy
-        #- schema: luna_pinyin_simp
-    "key_binder/bindings":
-        #- { when: paging, accept: comma, send: Page_Up }
-        - { when: has_menu, accept: comma, send: comma }
-        - { when: has_menu, accept: period, send: period }
-        - { when: has_menu, accept: bracketleft, send: Page_Up }
-        - { when: has_menu, accept: bracketright, send: Page_Down }
+  menu:
+    page_size: 7
+  ascii_composer:
+    switch_key:
+      Shift_L: clear
+  punctuator:
+    import_preset: symbols
+  schema_list:
+    - schema: flypy_double
+  key_binder:
+    bindings:
+      - { when: has_menu, accept: semicolon,  send: 2 }
+      - { when: has_menu, accept: apostrophe, send: 3 }
+      - { when: has_menu, accept: equal, send: Page_Down }
+      - { when: has_menu, accept: minus, send: Page_Up }
+      - { when: always, accept: Control+t, toggle: flypy_zh_simp  }
+
