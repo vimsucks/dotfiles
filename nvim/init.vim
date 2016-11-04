@@ -9,6 +9,7 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'javascript'] }
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
@@ -26,6 +27,7 @@ Plug 'KabbAmine/zeavim.vim'
 Plug 'tasklist.vim'
 Plug 'dracula/vim'
 Plug 'fcitx.vim'
+Plug 'vimwiki/vimwiki'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -312,3 +314,5 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>w :w<CR>
 autocmd FileType c,cs,cpp,sh,ruby,python,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
 nnoremap <leader>td :TaskList<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
