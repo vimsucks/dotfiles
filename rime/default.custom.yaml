@@ -7,12 +7,14 @@ patch:
   punctuator:
     import_preset: symbols
   schema_list:
-    - schema: flypy_double
+    - schema: double_pinyin_flypy
   key_binder:
     bindings:
       - { when: has_menu, accept: semicolon,  send: 2 }
       - { when: has_menu, accept: apostrophe, send: 3 }
-      - { when: has_menu, accept: equal, send: Page_Down }
-      - { when: has_menu, accept: minus, send: Page_Up }
+      - { when: has_menu, accept: period, send: Page_Down }
+      - { when: has_menu, accept: comma, send: Page_Up }
+      - { when: has_menu, accept: bracketleft,  send: Page_Up }
+      - { when: has_menu, accept: bracketright,  send: Page_Down }
       - { when: always, accept: Control+t, toggle: flypy_zh_simp  }
-
+  translator/enable_user_dict: true
