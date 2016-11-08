@@ -32,7 +32,7 @@ set $WS6  6:
 set $WS7  7:
 set $WS8  8:
 set $WS9  9:
-set $WS0 10:
+set $WS0 10:
 
 # => 工作区切换&智能启动（添加智能启动脚本~/bin/st 自动且不重复打开工作区相应程序）
 # 自动切换到新打开的窗口(需4.12版本支持)
@@ -64,6 +64,8 @@ for_window [class="jetbrains-studio"] move container to workspace $WS5
 for_window [class="google-chrome"] move container to workspace $WS2
 for_window [class="Thunderbird"] move container to workspace $WS4
 for_window [class="Emacs"] move container to workspace $WS3
+for_window [class="VirtualBox"] move container to workspace $WS0
+for_window [class="VirtualBox" title="Oracle VM VirtualBox 管理器"] move container to workspace $WS1, fullscreen disable, floating enable, border normal, resize set 640 480
 for_window [class="electronic-wechat"] move container to workspace $WS7
 
 # => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）

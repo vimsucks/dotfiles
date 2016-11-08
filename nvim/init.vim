@@ -28,6 +28,7 @@ Plug 'tasklist.vim'
 Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-surround'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
