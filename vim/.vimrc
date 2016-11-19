@@ -56,7 +56,6 @@ set shortmess=atI
 "syntax and theme
 syntax on
 set background=dark
-colorscheme dracula
 set cursorline
 set cursorcolumn
 

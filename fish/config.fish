@@ -1,14 +1,8 @@
-# Path to Oh My Fish install.
-set -q XDG_DATA_HOME
-  and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
-  or set -gx OMF_PATH "$HOME/.local/share/omf"
-
-
 # path
 set GOPATH ~/go
 set WORKON_HOME ~/.virtualenvs
-set -x fish_user_paths $HOME/bin $HOME/Scripts $HOME/.local/python/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $PATH $GOPATH/bin /home/sice/.node_modules/bin $fish_user_paths
-set -x PYTHONPATH /home/vimsucks/.local/python/lib/python3.5/site-packages
+set -x fish_user_paths $HOME/Scripts $HOME/.local/bin $HOME/.local/python/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/.node_modules/bin $PATH $fish_user_paths
+set -x PYTHONPATH $HOME/.local/python/lib/python3.5/site-packages
 set -x EDITOR nvim
 set ANDROID_HOME /opt/android-sdk
 set -x LANG en_US.UTF-8
@@ -19,14 +13,14 @@ set -x LC_PAPER en_US.UTF-8
 set -x LC_MEASUREMENT en_US.UTF-8
 
 # Customize Oh My Fish configuration path.
-#set -gx OMF_CONFIG "/home/sice/.config/omf"
+#set -gx OMF_CONFIG "$HOME/.config/omf"
 #
 
-set -g Z_SCRIPT_PATH /usr/lib/z.sh
+#set -g Z_SCRIPT_PATH /usr/lib/z.sh
 bind \ej accept-autosuggestion
 
 set grc_plugin_execs ls cat cvs df diff dig gcc g++ ifconfig make mount mtr netstat ping ps tail traceroute wdiff
-set grcplugin_ls --color -l
+set grcplugin_ls --color -lh
 
 function fish_greeting
 echo "                   _ooOoo_"
@@ -50,7 +44,7 @@ echo "                   `=---='"
 end
 
 function fish_user_key_bindgins
-	fish_vi_key_bindings
+	fish_default_key_bindings
 end
 
 function ialias -d "set alias in an intelligent way."
@@ -82,6 +76,3 @@ if status --is-login
 				exec startx
 		end
 end
-
-# Load oh-my-fish configuration.
-source $OMF_PATH/init.fish

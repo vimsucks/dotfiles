@@ -38,11 +38,13 @@ ${else} ${if_up wlp4s0}  ${wireless_essid} ${addr wlp4s0} ${endif} ${endif} \
  Core0: ${exec sensors | awk '/Core 0/ {print $3}'} | Core1: ${exec sensors | awk '/Core 1/ {print $3}'} \
  ${cpu cpu0}%  \
  ${memperc}%  \
+ ${diskio} \
 ${execi 1 amixer | grep -A10 'Master' | sed -rn 's/.*\[([0-8]+%)\].*\[(on|off)\]/\2 \1/p' | sed -n '1p' | sed 's/off.*/ /' | sed -r 's/on( [01234]?[0-9]%)/\1/' | sed -r 's/(on|) 0%/ 0%/' | sed -r 's/on//'} \
 ${if_match ${battery_percent} >= 90}  ${battery_percent}% ${endif}\
 ${if_match ${battery_percent} >= 60}${if_match ${battery_percent} < 90} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} >= 30}${if_match ${battery_percent} < 60} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} >= 10}${if_match ${battery_percent} < 30} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} < 10} ${battery_percent}%  ${endif}\
- ${time %a %m.%d} ${time %H:%M}
+ ${time %a %m.%d} ${time %H:%M} \
+   
 ]]

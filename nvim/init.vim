@@ -29,6 +29,7 @@ Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
+Plug 'edkolev/tmuxline.vim'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -139,6 +140,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_always_populate_location_list = 1
 set completeopt-=preview
+
+" ale
+"let &runtimepath.=',~/.config/nvim/plugged/ale'
 
 "ctrlp-funky
 let g:ctrlp_funky_matchtype = 'path'
@@ -264,6 +268,8 @@ function! CompileAndRun()
 		exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
 	elseif &filetype == "cpp"
 		exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+	elseif &filetype == "java"
+		exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
 	elseif &filetype == "python"
 		exec "te python3 %"
 	elseif &filetype == "ruby"
@@ -313,7 +319,7 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 " close buffer
 nnoremap <leader>w :w<CR>
-autocmd FileType c,cs,cpp,sh,ruby,python,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
+autocmd FileType c,cs,cpp,java,sh,ruby,python,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
 nnoremap <leader>td :TaskList<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
