@@ -19,6 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vimball'
 Plug 'easymotion/vim-easymotion'
+Plug 'plasticboy/vim-markdown'
 Plug 'ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky' " Key: <leader>fu
 "Plug 'EasyGrep'
@@ -29,7 +30,6 @@ Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
-Plug 'edkolev/tmuxline.vim'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -156,6 +156,17 @@ autocmd FileType html,css EmmetInstall
 
 " auto-pairs
 autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
+let g:AutoPairsMapSpace = 0
+
+" ctrlp
+"use ag as the ctrlp command
+let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden 
+			\ --ignore .git 
+			\ --ignore out 
+			\ --ignore .svn 
+			\ --ignore .hg 
+			\ --ignore .DS_Store
+			\ -g ""'
 
 "pymode
 let g:pymode = 1

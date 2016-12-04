@@ -52,7 +52,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 # => 快捷启动
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+Shift+Return exec --no-startup-id rofi -show window
+bindsym $mod+Shift+Return exec --no-startup-id rofi -1 -show window
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi"
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+e      exec --no-startup-id pcmanfm
@@ -65,7 +65,8 @@ for_window [class="Thunderbird"] move container to workspace $WS4
 for_window [class="Pidgin"] floating enable, border normal
 #for_window [class="VirtualBox"] move container to workspace $WS6
 #for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] move container to workspace $WS1, fullscreen disable, floating enable, border normal, resize set 640 480
-for_window [class="VirtualBox"] fullscreen disable, floating enable, border normal, resize set 640 480
+for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] fullscreen disable, floating enable, border normal, resize set 640 480
+for_window [instance="QQ.exe"] floating enable, border normal
 for_window [class="electronic-wechat"] move container to workspace $WS7
 
 # => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）
@@ -79,15 +80,17 @@ hide_edge_borders both
 bindsym $mod+b border toggle
 
 # => 新建窗口的分割方向
-bindsym $mod+Control+h split h
-bindsym $mod+Control+v split v
+bindsym $mod+Mod1+h split h
+bindsym $mod+Mod1+v split v
 
 # => 移动窗口
-bindsym $mod+Left  move left
-bindsym $mod+Down  move down
-bindsym $mod+Up    move up
-bindsym $mod+Right move right
+bindsym $mod+Control+h  move left
+bindsym $mod+Control+j  move down
+bindsym $mod+Control+k    move up
+bindsym $mod+Control+l move right
 bindsym $mod+Shift+Left  move workspace to output left
+bindsym $mod+Shift+Down  move workspace to output down
+bindsym $mod+Shift+Up    move workspace to output up
 bindsym $mod+Shift+Right move workspace to output right
 
 # => 调整窗口大小
@@ -97,10 +100,10 @@ bindsym $mod+Shift+Right move workspace to output right
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-bindsym $mod+Shift+h resize shrink width 10 px or 10 ppt
-bindsym $mod+Shift+k resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+j resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+l resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+h resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+k resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+j resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+l resize grow width 5 px or 5 ppt
 
 # => 关闭窗口
 bindsym $mod+w kill
@@ -183,8 +186,8 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym Print exec scrot -u '%Y%m%d_%H%M%S.png' -e 'mv $f ~/Pictures/screenshots/'
-bindsym $mod+Print exec scrot 'desktop.png' -e 'mv $f ~/Pictures/screenshots/'
+bindsym --release $mod+Shift+z exec maim ~/Pictures/Screenshots/$(date +%F-%T).png --opengl
+bindsym --release $mod+z exec maim -s ~/Pictures/Screenshots/$(date +%F-%T).png --opengl
 
 
 ############################# 主题相关 ###############################
@@ -213,8 +216,9 @@ bar {
 		height 24
 		output eDP1
 		output HDMI1
-		tray_output eDP1
+		#output primary
 		tray_output HDMI1
+		tray_output eDP1
     # 显示位置
 		position top
     # 是否隐藏
