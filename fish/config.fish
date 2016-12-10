@@ -1,8 +1,8 @@
 # path
 set GOPATH ~/go
 set WORKON_HOME ~/.virtualenvs
-set -x fish_user_paths $HOME/Scripts $HOME/.local/bin $HOME/.local/python/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/.node_modules/bin $PATH $fish_user_paths
-set -x PYTHONPATH $HOME/.local/python/lib/python3.5/site-packages
+set -x fish_user_paths $HOME/Scripts $HOME/.local/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/.node_modules/bin $PATH /opt/android-sdk/platform-tools $fish_user_paths
+set -x PYTHONPATH $HOME/.local/lib/python2.7/site-packages $HOME/.local/lib/python3.5/site-packages /usr/lib/python2.7/site-packages /usr/lib/python2.7/site-packages
 set -x EDITOR nvim
 set ANDROID_HOME /opt/android-sdk
 set -x LANG en_US.UTF-8

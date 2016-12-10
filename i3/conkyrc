@@ -35,15 +35,16 @@ ${if_up enp0s25}  ${upspeed enp0s25}/s  ${downspeed enp0s25}/s\
 ${else} ${if_up wlp4s0}  ${upspeed wlp4s0}/s  ${downspeed wlp4s0}/s ${endif} ${endif} \
 ${if_up enp0s25}  Ethernet ${addrs enp0s25} \
 ${else} ${if_up wlp4s0}  ${wireless_essid} ${addr wlp4s0} ${endif} ${endif} \
- ${cpu cpu0}%  \
- ${memperc}%  \
+ ${cpu cpu0}% \
+ ${memperc}% \
  ${diskio} \
+ ${exec sensors | grep 'Core 0' | cut -c18-24} | ${exec sensors | grep 'Core 0' | cut -c18-24} \
 ${execi 1 amixer | grep -A10 'Master' | sed -rn 's/.*\[([0-8]+%)\].*\[(on|off)\]/\2 \1/p' | sed -n '1p' | sed 's/off.*/ /' | sed -r 's/on( [01234]?[0-9]%)/\1/' | sed -r 's/(on|) 0%/ 0%/' | sed -r 's/on//'} \
 ${if_match ${battery_percent} >= 90}  ${battery_percent}% ${endif}\
 ${if_match ${battery_percent} >= 60}${if_match ${battery_percent} < 90} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} >= 30}${if_match ${battery_percent} < 60} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} >= 10}${if_match ${battery_percent} < 30} ${battery_percent}%  ${endif}${endif}\
 ${if_match ${battery_percent} < 10} ${battery_percent}%  ${endif}\
- ${time %a %m.%d} ${time %H:%M} \
+ ${time %a-%m.%d-%H:%M} \
    
 ]]

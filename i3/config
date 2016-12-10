@@ -24,9 +24,9 @@ set $mod  Mod4
 set $WS1  1:
 set $WS2  2:
 set $WS3  3:
-set $WS4  4:
-set $WS5  5:
-set $WS6  6:
+set $WS4  4:
+set $WS5  5:
+set $WS6  6:
 set $WS7  7:
 set $WS8  8:
 set $WS9  9:
@@ -52,7 +52,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 # => 快捷启动
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+Shift+Return exec --no-startup-id rofi -1 -show window
+bindsym $mod+Shift+Return exec --no-startup-id rofi -2 -show window
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi"
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+e      exec --no-startup-id pcmanfm
@@ -61,8 +61,9 @@ bindsym $mod+e      exec --no-startup-id pcmanfm
 for_window [class="jetbrains-studio"] move container to workspace $WS5
 for_window [class="jetbrains-idea"] move container to workspace $WS3
 for_window [class="Google-chrome"] move container to workspace $WS2
-for_window [class="Thunderbird"] move container to workspace $WS4
+for_window [class="Thunderbird"] move container to workspace $WS5
 for_window [class="Pidgin"] floating enable, border normal
+for_window [title="Google Keep"] floating enable, border normal
 #for_window [class="VirtualBox"] move container to workspace $WS6
 #for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] move container to workspace $WS1, fullscreen disable, floating enable, border normal, resize set 640 480
 for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] fullscreen disable, floating enable, border normal, resize set 640 480
@@ -88,10 +89,10 @@ bindsym $mod+Control+h  move left
 bindsym $mod+Control+j  move down
 bindsym $mod+Control+k    move up
 bindsym $mod+Control+l move right
-bindsym $mod+Shift+Left  move workspace to output left
-bindsym $mod+Shift+Down  move workspace to output down
-bindsym $mod+Shift+Up    move workspace to output up
-bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+h  move workspace to output left
+bindsym $mod+Control+Shift+j  move workspace to output down
+bindsym $mod+Control+Shift+k  move workspace to output up
+bindsym $mod+Control+Shift+l  move workspace to output right
 
 # => 调整窗口大小
 # These bindings trigger as soon as you enter the resize mode
@@ -211,7 +212,8 @@ bar {
     # i3bar调用
 		#
 		i3bar_command i3bar -t
-    status_command conky -c $HOME/.config/i3/conkyrc
+		status_command conky -c $HOME/.config/i3/conkyrc
+		#status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
 
 		height 24
 		output eDP1
