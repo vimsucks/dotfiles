@@ -76,3 +76,9 @@ if status --is-login
 				exec startx
 		end
 end
+
+# use jdk-7 if not in tty
+if test (tty | grep tty) -z
+	set JAVA_HOME /usr/lib/jvm/java-7-jdk
+	set PATH $JAVA_HOME/bin $PATH
+end

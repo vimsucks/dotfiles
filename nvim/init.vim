@@ -30,6 +30,7 @@ Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
+Plug 'ianva/vim-youdao-translater'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -334,3 +335,6 @@ autocmd FileType c,cs,cpp,java,sh,ruby,python,scheme,javascript,haskell nnoremap
 nnoremap <leader>td :TaskList<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>
