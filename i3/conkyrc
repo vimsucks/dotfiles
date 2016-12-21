@@ -34,7 +34,7 @@ conky.text = [[
 ${if_up enp0s25}  ${upspeed enp0s25}/s  ${downspeed enp0s25}/s \
 ${else} ${if_up wlp4s0}  ${upspeed wlp4s0}/s  ${downspeed wlp4s0}/s ${endif} ${endif} \
 ${if_up enp0s25}  Ethernet ${addrs enp0s25} \
-${else} ${if_up wlp4s0}  ${wireless_essid} ${addr wlp4s0}  ${endif} ${endif} \
+${else} ${if_up wlp4s0}  ${wireless_essid} ${addr wlp4s0} ${endif} ${endif}\
  ${cpu cpu0}% \
   ${memperc}% \
   ${diskio} \

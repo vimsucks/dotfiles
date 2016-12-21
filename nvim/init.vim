@@ -8,7 +8,7 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/ListToggle'
-Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'cpp', 'javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'python', 'cpp', 'javascript'] }
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
@@ -23,7 +23,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky' " Key: <leader>fu
 "Plug 'EasyGrep'
-Plug 'klen/python-mode' , { 'for' : 'python'}
 Plug 'KabbAmine/zeavim.vim'
 Plug 'tasklist.vim'
 Plug 'dracula/vim'
@@ -65,20 +64,22 @@ set shortmess=atI
 set t_Co=256
 syntax on
 set background=dark
-"colorscheme gruvbox
 colorscheme dracula
-"colorscheme dracula
 set cursorline
 set cursorcolumn
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%80v', 100)
+"set cc=80
 
 "Configure backspace to be able to acrosS two lines
 set backspace=2
 set whichwrap+=<,>,h,l
 
 "Tab and indent
-set noexpandtab " 用空格键代替制表符
+set expandtab " 用空格键代替制表符
 set tabstop=2 " 制表符占2个空格大小
 set smarttab
 set shiftwidth=2 " 默认缩进2个空格大小
@@ -117,7 +118,7 @@ set fdm=indent
 "set fdm=syntax
 "
 
-set shell=bash
+set shell=fish
 
 "==========================================================================================
 "
@@ -143,6 +144,15 @@ let g:ycm_always_populate_location_list = 1
 set completeopt-=preview
 
 " ale
+"if &filetype == "python"
+  "if split(getline(1), " ")[-1] == "python2"
+    "let g:ale_python_flake8_executable = 'python2'
+  "else
+    "let g:ale_python_flake8_executable = 'python3'
+  "endif
+"endif
+"let g:ale_python_flake8_args = '-m flake8'
+"
 "let &runtimepath.=',~/.config/nvim/plugged/ale'
 
 "ctrlp-funky
@@ -162,37 +172,12 @@ let g:AutoPairsMapSpace = 0
 " ctrlp
 "use ag as the ctrlp command
 let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden 
-			\ --ignore .git 
-			\ --ignore out 
-			\ --ignore .svn 
-			\ --ignore .hg 
-			\ --ignore .DS_Store
-			\ -g ""'
-
-"pymode
-let g:pymode = 1
-let g:pymode_options_max_line_length = 90
-"autocmd FileType python set colorcolumn=90
-let g:pymode_quickfix_minheight = 1
-let g:pymode_quickfix_maxheight = 2
-let g:pymode_pyton = 'python3'
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_message = 1
-let g:pymode_lint_cwindow = 1
-let g:pymode_lint_checkers = 'pep8'
-let g:pymode_run = 0
-let g:pymode_rope = 1
-let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 1
-let g:pymode_rope_completion_bind = '<C-Space>'
-let g:pymode_rope_autoimport = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_slow_sync = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_print_as_function = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
+      \ --ignore .git 
+      \ --ignore out 
+      \ --ignore .svn 
+      \ --ignore .hg 
+      \ --ignore .DS_Store
+      \ -g ""'
 
 " rainbow parenthese
 augroup rainbow_lisp
@@ -254,51 +239,55 @@ let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CLISP "clisp -i ~/.config/
 "
 "==========================================================================================
 function! PythonTemplate()
-	call setline(1,"#!/usr/bin/env python3")
-	call append(1, "# _*_ coding:utf-8 _*_")
-	call append(2,"")
+  call setline(1,"#!/usr/bin/env python3")
+  call append(1, "# _*_ coding:utf-8 _*_")
+  call append(2,"")
 endfunction
 
 function! CPPTemplate()
-	call setline(1, "#include <iostream>")
-	call append(5, "")
-	call append(6, "using namespace std;")
-	call append(7, "")
-	call append(8, "int")
-	call append(9, "main() {")
-	call append(10, "}")
+  call setline(1, "#include <iostream>")
+  call append(5, "")
+  call append(6, "using namespace std;")
+  call append(7, "")
+  call append(8, "int")
+  call append(9, "main() {")
+  call append(10, "}")
 endfunction
 
 function! ShTemplate()
-	call setline(1, "#!/bin/bash")
-	call append(1,"")
+  call setline(1, "#!/bin/bash")
+  call append(1,"")
 endfunction
 
 function! CompileAndRun()
-	exec "w"
-	if &filetype == "c"
-		exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
-	elseif &filetype == "cpp"
-		exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
-	elseif &filetype == "java"
-		exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
-	elseif &filetype == "python"
-		exec "te python3 %"
-	elseif &filetype == "ruby"
-		exec "te ruby %"
-	elseif &filetype == "sh"
-		exec "te bash %"
-	elseif &filetype == "lua"
-		exec "te lua %"
-	elseif &filetype == "cs"
-		exec "te mcs % -out:/tmp/a.exe && /tmp/a.exe"
-	elseif &filetype == "scheme"
-		exec "te csc % -o /tmp/a.out && /tmp/a.out"
-	elseif &filetype == "javascript"
-		exec "te node %"
-	elseif &filetype == "haskell"
-		exec "te ghc % && ./%:t:r"
-	endif
+  exec "w"
+  if &filetype == "c"
+    exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
+  elseif &filetype == "cpp"
+    exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+  elseif &filetype == "java"
+    exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
+  elseif &filetype == "python"
+    if split(getline(1), " ")[-1] == "python2"
+      exec "te python2 %"
+    else
+      exec "te python3 %"
+    endif
+  elseif &filetype == "ruby"
+    exec "te ruby %"
+  elseif &filetype == "sh"
+    exec "te bash %"
+  elseif &filetype == "lua"
+    exec "te lua %"
+  elseif &filetype == "cs"
+    exec "te mcs % -out:/tmp/a.exe && /tmp/a.exe"
+  elseif &filetype == "scheme"
+    exec "te csc % -o /tmp/a.out && /tmp/a.out"
+  elseif &filetype == "javascript"
+    exec "te node %"
+  elseif &filetype == "haskell"
+    exec "te ghc % && ./%:t:r"
+  endif
 endfunction
 
 "==========================================================================================
