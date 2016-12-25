@@ -234,14 +234,14 @@ bar {
     # 定义分隔符（适用于i3status）
     #separator_symbol " "
 		colors {
-				background #455A64
+				background #1d2326
 				#background $transparent
 				statusline #FFFFFF
 				separator  #3399FF
 				# 工作区颜色         边框    背景    文字
-				focused_workspace  #26A69A #455A64 #FFFFFF
-				active_workspace   #FFFFFF #455A64 #FFFFFF
-				inactive_workspace #455A64 #455A64 #FFFFFF
+				focused_workspace  #26A69A #1d2326 #FFFFFF
+				active_workspace   #FFFFFF #1d2326 #FFFFFF
+				inactive_workspace #1d2326 #1d2326 #FFFFFF
 				urgent_workspace   #990000 #990000 #FFFFFF
 				binding_mode       #990000 #990000 #FFFFFF
 		}
