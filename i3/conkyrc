@@ -16,7 +16,7 @@ conky.config = {
     background = false,
     double_buffer = false,
     -- 刷新时间
-    update_interval = 3,
+    update_interval = 1,
     -- 运行时间，0为一直运行
     total_run_times = 0,
     -- 强制uft8编码，需xft支持

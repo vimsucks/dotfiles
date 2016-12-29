@@ -3,11 +3,14 @@
     allow_markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes
-    indicate_hidden = true
+    indicate_hidden = yes
     # geometry = "x5"
     idle_threshold = 0
     geometry = "300x5-20+20"
     alignment = center
+    icon_position = left
+    shrink = no
+    transparency = 25
     show_age_threshold = 60
     sticky_history = yes
     follow = mouse
@@ -25,7 +28,7 @@
 [urgency_low]
 		foreground = "#b9c2cd"
     background = "#2f343f"
-    timeout = 10
+    timeout = 2
 
 [urgency_normal]
 		foreground = "#ffffff"

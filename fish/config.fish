@@ -1,8 +1,8 @@
 # path
-set GOPATH ~/go
+set GOPATH ~/.go
 set WORKON_HOME ~/.virtualenvs
-set -x fish_user_paths $HOME/Scripts $HOME/.local/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/.node_modules/bin $PATH /opt/android-sdk/platform-tools $fish_user_paths
-set -x PYTHONPATH $HOME/.local/lib/python2.7/site-packages $HOME/.local/lib/python3.5/site-packages /usr/lib/python2.7/site-packages /usr/lib/python2.7/site-packages
+set -x fish_user_paths $HOME/Scripts $HOME/.local/bin /bin /usr/bin /usr/local/bin /usr/local/sbin /opt/android-sdk/platform-tools /opt/android-sdk/tools /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/.node_modules/bin /opt/android-sdk/platform-tools $GOPATH/bin $PATH $fish_user_paths
+set -x WORKON_HOME $HOME/.virtualenv # virtualenv path
 set -x EDITOR nvim
 set ANDROID_HOME /opt/android-sdk
 set -x LANG en_US.UTF-8
@@ -65,6 +65,9 @@ ialias shad "env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.
 
 #eval $(fasd --init auto)
 eval (python -m virtualfish)
+if test -n "$VIRTUAL_ENV"
+  vf activate (echo "print('$VIRTUAL_ENV'.split('/')[-1])" | python)
+end
 
 if test -n "$WINDOWID"
 	transset-df --id "$WINDOWID" 0.75 > /dev/null
@@ -78,7 +81,7 @@ if status --is-login
 end
 
 # use jdk-7 if not in tty
-if test (tty | grep tty) -z
+if test -z (tty | grep tty)
 	set JAVA_HOME /usr/lib/jvm/java-7-jdk
 	set PATH $JAVA_HOME/bin $PATH
 end

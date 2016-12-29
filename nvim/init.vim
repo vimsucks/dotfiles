@@ -8,28 +8,25 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/ListToggle'
-Plug 'Valloric/YouCompleteMe', { 'for' : ['c', 'cs', 'python', 'cpp', 'javascript'] }
-Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe' ", { 'for' : ['c', 'cs', 'python', 'cpp', 'go', 'javascript'] }
+Plug 'w0rp/ale' " linter
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
-Plug 'mattn/emmet-vim' , { 'for' : ['html', 'css'] } " HTML tool
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
 Plug 'Yggdroot/indentLine'  " 缩进对齐线
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'vimball'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'plasticboy/vim-markdown'
 Plug 'ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky' " Key: <leader>fu
-"Plug 'EasyGrep'
+Plug 'tacahiroy/ctrlp-funky' " Key: <leader>ctrl+p
 Plug 'KabbAmine/zeavim.vim'
 Plug 'tasklist.vim'
 Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
-Plug 'ianva/vim-youdao-translater'
+Plug 'kassio/neoterm'
 "Plug 'paredit.vim'
 "Plug 'slimv.vim'
 call plug#end()
@@ -120,6 +117,33 @@ set fdm=indent
 
 set shell=fish
 
+" python
+let g:python_host_prog = '/bin/python3'
+let g:python2_host_prog = '/bin/python2'
+let g:python3_host_prog = '/bin/python3'
+"py3 << EOF
+"import sys, os, vim
+"if "VIRTUAL_ENV" in os.environ:
+  "venv_base_dir = os.environ.get("VIRTUAL_ENV")
+  "py_vers = os.listdir(venv_base_dir + "/lib")
+  "for ver in py_vers:
+    "sys.path.insert(0, venv_base_dir + "/lib/" + ver + "/site-packages")
+  "activate_this = os.path.join(venv_base_dir, 'bin/activate_this.py')
+  "sys.path.append(os.getcwd())
+  "for dr in os.listdir():
+      "if (os.path.isdir(dr)):
+          "sys.path.append(os.getcwd() + "/" + dr)
+  "#exec(open(activate_this).read())
+"EOF
+
+"==========================================================================================
+"
+"                                 Buffer Settings
+"                                 
+"==========================================================================================
+
+autocmd! TermOpen * set nobuflisted
+
 "==========================================================================================
 "
 "                                 Plugins Settings
@@ -141,6 +165,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_always_populate_location_list = 1
+let g:ycm_python_binary_path = "python"
 set completeopt-=preview
 
 " ale
@@ -158,12 +183,6 @@ set completeopt-=preview
 "ctrlp-funky
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
-
-"emmet
-let g:user_emmet_expandabbr_key = '<C-Space>'
-let g:user_emmet_leader_key ='<C-y>'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
 
 " auto-pairs
 autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
@@ -190,11 +209,11 @@ let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 "Airline
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dracula'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 1
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#enabled = 1
@@ -202,6 +221,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#ycm#error_symbol = 'E:'
 let g:airline#extensions#ycm#warning_symbol = 'W:'
+let g:airline#extensions#tabline#excludes = ["term://.*"]
 
 " cpp highlightint
 let g:cpp_class_scope_highlight = 1
@@ -224,10 +244,9 @@ let g:calendar_google_task = 1
 let g:tlTokenList = ["FIXME", "TODO"]
 let g:tlWindowPosition = 1
 
-" ultisnips
-let g:UltiSnipsExpandTrigger="<C-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" neoterm
+let g:neoterm_size = "10"
+" let g:neoterm_autoinsert = 1
 
 " slimv
 let g:slimv_impl = 'clisp'
@@ -260,33 +279,40 @@ function! ShTemplate()
 endfunction
 
 function! CompileAndRun()
+  if exists(":Tkill")
+    exec "Tkill"
+  endif
   exec "w"
   if &filetype == "c"
-    exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
+    exec "T gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "cpp"
-    exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+    exec "T clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+  elseif &filetype == "go"
+    exec "T go run %"
   elseif &filetype == "java"
-    exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
+    exec "T javac % -d /tmp/ && java -cp /tmp/ %:t:r"
   elseif &filetype == "python"
     if split(getline(1), " ")[-1] == "python2"
-      exec "te python2 %"
+      exec "T python2 %"
     else
-      exec "te python3 %"
+      exec "T python3 %"
     endif
+  elseif &filetype == "vim"
+    exec "source %"
   elseif &filetype == "ruby"
-    exec "te ruby %"
+    exec "T ruby %"
   elseif &filetype == "sh"
-    exec "te bash %"
+    exec "T bash %"
   elseif &filetype == "lua"
-    exec "te lua %"
+    exec "T lua %"
   elseif &filetype == "cs"
-    exec "te mcs % -out:/tmp/a.exe && /tmp/a.exe"
+    exec "T mcs % -out:/tmp/a.exe && /tmp/a.exe"
   elseif &filetype == "scheme"
-    exec "te csc % -o /tmp/a.out && /tmp/a.out"
+    exec "T csc % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "javascript"
-    exec "te node %"
+    exec "T node %"
   elseif &filetype == "haskell"
-    exec "te ghc % && ./%:t:r"
+    exec "T ghc % && ./%:t:r"
   endif
 endfunction
 
@@ -320,10 +346,20 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 " close buffer
 nnoremap <leader>w :w<CR>
-autocmd FileType c,cs,cpp,java,sh,ruby,python,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
+autocmd FileType c,cs,cpp,go,java,sh,ruby,python,vim,scheme,javascript,haskell nnoremap <leader>r :call CompileAndRun()<CR>
 nnoremap <leader>td :TaskList<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
 nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
+nnoremap <leader>1 :b1<CR>
+nnoremap <leader>2 :b2<CR>
+nnoremap <leader>3 :b3<CR>
+nnoremap <leader>4 :b4<CR>
+nnoremap <leader>5 :b5<CR>
+nnoremap <leader>6 :b6<CR>
+nnoremap <leader>7 :b7<CR>
+nnoremap <leader>8 :b8<CR>
+nnoremap <leader>9 :b9<CR>
+nnoremap <leader>0 :b0<CR>
