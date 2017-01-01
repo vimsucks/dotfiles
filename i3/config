@@ -54,8 +54,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 # => 快捷启动
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+Shift+Return exec --no-startup-id rofi -2 -show window
-bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi"
+bindsym --release $mod+d exec "rofi -show combi -combi-mode window,ssh,drun"
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+e      exec --no-startup-id pcmanfm
 
@@ -309,3 +308,13 @@ mode "$mode_gaps_outer" {
 #for_window [class="^.*"] border pixel 0
 #for_window [class="(?i)urxvt"] border pixel 3
 
+set $mode_rofi ROFI: WIFI(N) 剪贴板(C) 窗口(W)
+bindsym $mod+semicolon mode "$mode_rofi"
+mode "$mode_rofi" {
+    bindsym --release n exec --no-startup-id nmcli_dmenu, mode "default"
+    bindsym --release c exec --no-startup-id clipmenu, mode "default"
+    bindsym --release w exec --no-startup-id rofi -show window, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}

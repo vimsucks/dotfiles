@@ -15,3 +15,4 @@ rofi.color-window:                   argb:ee333333, #1aa,#1aa
 ! Separator style (none, dash, solid)
 rofi.separator-style:                dash
 rofi.font:                           Comic\ Sans\ MS 13
+rofi.terminal:                       i3
