@@ -1,18 +1,37 @@
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
+! 
+! 
+! -- Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #CAA9FA
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
 
 ! Use extended color scheme
 rofi.color-enabled:                  true
-! Color scheme for normal row
-rofi.color-normal:                   argb:00000000, #1aa, argb:11FFFFFF, #1aa,#333
-! Color scheme for urgent row
-rofi.color-urgent:                   argb:00000000, #f99, argb:11FFFFFF, #f99,#333
-! Color scheme for active row
-rofi.color-active:                   argb:00000000, #aa1, argb:11FFFFFF, #aa1,#333
-! Color scheme window
-rofi.color-window:                   argb:ee333333, #1aa,#1aa
+rofi.fake-transparency:                  true
+rofi.color-window:    #282a36, #282a36, #44475a
+rofi.color-normal:    #282a36, #f8f8f2, #282a36, #f8f8f2, #282a36
+rofi.color-active:    #282a36, #f1fa8c, #282a36, #f1fa8c, #282a36
+rofi.color-urgent:    #282a36, #ff5555, #282a36, #ff5555, #282a36
 ! Separator style (none, dash, solid)
-rofi.separator-style:                dash
-rofi.font:                           Comic\ Sans\ MS 13
-rofi.terminal:                       i3
+rofi.separator-style:                none
+rofi.font:            Comic\ Sans\ MS 13
+rofi.terminal:        i3
+rofi.combi-modi:            window,drun

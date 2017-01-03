@@ -122,7 +122,7 @@ bindsym $mod+w kill
 
 # => 焦点切换
 # 焦点跟随鼠标移动
-focus_follows_mouse yes
+focus_follows_mouse no
 # 焦点切换到父窗口
 bindsym $mod+q focus parent
 # 焦点切换回子窗口
@@ -172,7 +172,7 @@ bindsym $mod+Shift+f move scratchpad
 bindsym $mod+f scratchpad show
 
 # => 重新载入（更改配置文件后只须重载即可生效，不包含自启部分）
-bindsym $Mod+Shift+r restart
+bindsym $Mod+Shift+r reload
 
 # => 电源管理（Pause Break键呼出)
 set $mode_system 系统:锁屏(L) 注销(O) 休眠(S) 关机(H) 重启(R) 取消(Esc)
@@ -308,12 +308,13 @@ mode "$mode_gaps_outer" {
 #for_window [class="^.*"] border pixel 0
 #for_window [class="(?i)urxvt"] border pixel 3
 
-set $mode_rofi ROFI: WIFI(N) 剪贴板(C) 窗口(W)
+set $mode_rofi ROFI: WIFI(N) 剪贴板(C) 搜索网页(S) 显示器(M)
 bindsym $mod+semicolon mode "$mode_rofi"
 mode "$mode_rofi" {
     bindsym --release n exec --no-startup-id nmcli_dmenu, mode "default"
     bindsym --release c exec --no-startup-id clipmenu, mode "default"
-    bindsym --release w exec --no-startup-id rofi -show window, mode "default"
+    bindsym --release s exec --no-startup-id rofi-surfraw, mode "default"
+    bindsym --release m exec --no-startup-id monitor_layout.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
