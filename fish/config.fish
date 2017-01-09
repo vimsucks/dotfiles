@@ -59,9 +59,10 @@ ialias c11 "clang++ -std=c++11 -Wall -Weffc++ -Wextra -pedantic -O3"
 ialias pacs "sudo pacman -S"
 ialias pacr "sudo pacman -Rsc"
 ialias pacsu "sudo pacman -Su"
-ialias pacsyu "sudo pacman -Syyu"
+ialias pacsyu "yaourt -Syu --aur"
 ialias tmuxa "tmux attach"
 ialias shad "env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+ialias pg "ps aux | grep"
 
 #eval $(fasd --init auto)
 eval (python -m virtualfish)
@@ -75,9 +76,9 @@ end
 
 #startx at login
 if status --is-login
-		if test -z "$DISPLAY" -a "$XDG_VTNR" -eq "1"
-				exec startx
-		end
+    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq "1"
+        exec startx
+    end
 end
 
 # use jdk-7 if not in tty

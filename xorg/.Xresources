@@ -32,6 +32,9 @@ rofi.color-active:    #282a36, #f1fa8c, #282a36, #f1fa8c, #282a36
 rofi.color-urgent:    #282a36, #ff5555, #282a36, #ff5555, #282a36
 ! Separator style (none, dash, solid)
 rofi.separator-style:                none
-rofi.font:            Comic\ Sans\ MS 13
-rofi.terminal:        i3
+!rofi.font:            Comic\ Sans\ MS 13
+!rofi.font:            Comic\ Neue\ Bold 13
+rofi.font:            Comic\ Neue, FontAwesome 13
+rofi.terminal:        st
 rofi.combi-modi:            window,drun
+rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft,Super+d

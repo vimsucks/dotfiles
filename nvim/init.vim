@@ -25,6 +25,8 @@ Plug 'tasklist.vim'
 Plug 'dracula/vim'
 Plug 'fcitx.vim'
 Plug 'vis'
+Plug 'mhinz/vim-signify'
+Plug 'terryma/vim-smooth-scroll'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
 Plug 'kassio/neoterm'
@@ -364,3 +366,8 @@ nnoremap <leader>7 :b7<CR>
 nnoremap <leader>8 :b8<CR>
 nnoremap <leader>9 :b9<CR>
 nnoremap <leader>0 :b0<CR>
+" smooth scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
