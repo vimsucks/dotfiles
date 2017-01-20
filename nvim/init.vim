@@ -7,7 +7,6 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
-Plug 'Valloric/ListToggle'
 Plug 'Valloric/YouCompleteMe' ", { 'for' : ['c', 'cs', 'python', 'cpp', 'go', 'javascript'] }
 Plug 'w0rp/ale' " linter
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
@@ -16,22 +15,12 @@ Plug 'Yggdroot/indentLine'  " 缩进对齐线
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'skywind3000/asyncrun.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky' " Key: <leader>ctrl+p
-Plug 'KabbAmine/zeavim.vim'
+Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'tasklist.vim'
 Plug 'dracula/vim'
 Plug 'fcitx.vim'
-Plug 'vis'
-Plug 'mhinz/vim-signify'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'vimwiki/vimwiki'
-Plug 'tpope/vim-surround'
-Plug 'kassio/neoterm'
-"Plug 'paredit.vim'
-"Plug 'slimv.vim'
+Plug 'mhinz/vim-signify'  " show git diff
 call plug#end()
 
 "==========================================================================================
@@ -118,26 +107,7 @@ set fdm=indent
 "set fdm=syntax
 "
 
-set shell=fish
-
-" python
-let g:python_host_prog = '/bin/python3'
-let g:python2_host_prog = '/bin/python2'
-let g:python3_host_prog = '/bin/python3'
-"py3 << EOF
-"import sys, os, vim
-"if "VIRTUAL_ENV" in os.environ:
-  "venv_base_dir = os.environ.get("VIRTUAL_ENV")
-  "py_vers = os.listdir(venv_base_dir + "/lib")
-  "for ver in py_vers:
-    "sys.path.insert(0, venv_base_dir + "/lib/" + ver + "/site-packages")
-  "activate_this = os.path.join(venv_base_dir, 'bin/activate_this.py')
-  "sys.path.append(os.getcwd())
-  "for dr in os.listdir():
-      "if (os.path.isdir(dr)):
-          "sys.path.append(os.getcwd() + "/" + dr)
-  "#exec(open(activate_this).read())
-"EOF
+set shell=zsh
 
 "==========================================================================================
 "
@@ -153,10 +123,6 @@ autocmd! TermOpen * set nobuflisted
 "
 "==========================================================================================
 
-" ListToggle
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>q'
-
 " YCM
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_min_num_identifier_candidate_chars = 0
@@ -171,42 +137,9 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_python_binary_path = "python"
 set completeopt-=preview
 
-" ale
-"if &filetype == "python"
-  "if split(getline(1), " ")[-1] == "python2"
-    "let g:ale_python_flake8_executable = 'python2'
-  "else
-    "let g:ale_python_flake8_executable = 'python3'
-  "endif
-"endif
-"let g:ale_python_flake8_args = '-m flake8'
-"
-"let &runtimepath.=',~/.config/nvim/plugged/ale'
-
-"ctrlp-funky
-let g:ctrlp_funky_matchtype = 'path'
-let g:ctrlp_funky_syntax_highlight = 1
-
 " auto-pairs
 autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
 let g:AutoPairsMapSpace = 0
-
-" ctrlp
-"use ag as the ctrlp command
-let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden 
-      \ --ignore .git 
-      \ --ignore out 
-      \ --ignore .svn 
-      \ --ignore .hg 
-      \ --ignore .DS_Store
-      \ -g ""'
-
-" rainbow parenthese
-augroup rainbow_lisp
-  autocmd!
-  "autocmd FileType lisp,clojure,scheme RainbowParentheses
-  autocmd FileType * RainbowParentheses
-augroup END
 
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
@@ -226,34 +159,9 @@ let g:airline#extensions#ycm#error_symbol = 'E:'
 let g:airline#extensions#ycm#warning_symbol = 'W:'
 let g:airline#extensions#tabline#excludes = ["term://.*"]
 
-" cpp highlightint
-let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let c_no_curly_error = 1
-
-" gundo
-nnoremap <leader>gu :GundoToggle<CR>
-
-" vimwiki
-let g:vimwiki_camel_case = 0
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_CJK_length = 1
-
-" calendar
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-
 " tasklist
 let g:tlTokenList = ["FIXME", "TODO"]
 let g:tlWindowPosition = 1
-
-" neoterm
-let g:neoterm_size = "10"
-" let g:neoterm_autoinsert = 1
-
-" slimv
-let g:slimv_impl = 'clisp'
-let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CLISP "clisp -i ~/.config/nvim/plugged/slimv.vim/slime/start-swank.lisp"'
 
 "==========================================================================================
 "
@@ -282,40 +190,37 @@ function! ShTemplate()
 endfunction
 
 function! CompileAndRun()
-  if exists(":Tkill")
-    exec "Tkill"
-  endif
   exec "w"
   if &filetype == "c"
-    exec "T gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
+    exec "te gcc -Wall -Wextra -O3 -pedantic % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "cpp"
-    exec "T clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
+    exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "go"
-    exec "T go run %"
+    exec "te go run %"
   elseif &filetype == "java"
-    exec "T javac % -d /tmp/ && java -cp /tmp/ %:t:r"
+    exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
   elseif &filetype == "python"
     if split(getline(1), " ")[-1] == "python2"
-      exec "T python2 %"
+      exec "te python2 %"
     else
-      exec "T python3 %"
+      exec "te python3 %"
     endif
   elseif &filetype == "vim"
     exec "source %"
   elseif &filetype == "ruby"
-    exec "T ruby %"
+    exec "te ruby %"
   elseif &filetype == "sh"
-    exec "T bash %"
+    exec "te bash %"
   elseif &filetype == "lua"
-    exec "T lua %"
+    exec "te lua %"
   elseif &filetype == "cs"
-    exec "T mcs % -out:/tmp/a.exe && /tmp/a.exe"
+    exec "te mcs % -out:/tmp/a.exe && /tmp/a.exe"
   elseif &filetype == "scheme"
-    exec "T csc % -o /tmp/a.out && /tmp/a.out"
+    exec "te csc % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "javascript"
-    exec "T node %"
+    exec "te node %"
   elseif &filetype == "haskell"
-    exec "T ghc % && ./%:t:r"
+    exec "te ghc % && ./%:t:r"
   endif
 endfunction
 
@@ -356,18 +261,5 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
 nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
-nnoremap <leader>1 :b1<CR>
-nnoremap <leader>2 :b2<CR>
-nnoremap <leader>3 :b3<CR>
-nnoremap <leader>4 :b4<CR>
-nnoremap <leader>5 :b5<CR>
-nnoremap <leader>6 :b6<CR>
-nnoremap <leader>7 :b7<CR>
-nnoremap <leader>8 :b8<CR>
-nnoremap <leader>9 :b9<CR>
-nnoremap <leader>0 :b0<CR>
-" smooth scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" fzf
+nnoremap <C-p> :FZF<CR>

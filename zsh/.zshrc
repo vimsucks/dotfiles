@@ -1,10 +1,26 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export GOPATH=~/.go
+export WORKON_HOME=~/.virtualenvs
+export PATH=$HOME/Scripts:$HOME/.local/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.node_modules/bin:/opt/android-sdk/platform-tools:$GOPATH/bin:$PATH
+export WORKON_HOME=$HOME/.virtualenv # virtualenv path
+export EDITOR=nvim
+export ANDROID_HOME=/opt/android-sdk
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.  Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="half-life"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="spaceship"
+
+# Prompt Variables Override
+SPACESHIP_NVM_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_XCODE_SHOW=false
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_SWIFT_SHOW=false
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -26,10 +42,10 @@ ZSH_THEME="half-life"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -39,7 +55,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -48,17 +64,19 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize wd vi-mode extract autojump zsh-autosuggestions zsh-completions)
-
-# User configuration
-
-export PATH="/home/sice/.autojump/bin:/home/sice/.autojump/bin:/home/sice/bin:/usr/local/bin:/home/sice/.autojump/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-export MANPATH="/usr/local/man:$MANPATH"
+plugins=(warhol git autojump virtualenvwrapper zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+# Plugin Settings
+
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -71,7 +89,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -79,47 +97,16 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias nv="nvim"
-alias grep="grep --color=auto"
-alias tree="tree -C"
-alias youp="you-get -p vlc"
+alias youp="you-get -p bomi"
 alias c11="clang++ -std=c++11 -Wall -Weffc++ -Wextra -pedantic -O3"
-alias hsleep="sudo systemctl hybrid-sleep"
-alias pacs="sudo pacman -Syyu"
+alias pacs="sudo pacman -S"
 alias pacr="sudo pacman -Rsc"
-alias flux="xflux -l 43.8276 -g 125.3095"
-alias ccat="pygmentize -g -O style=monokai -f console256"
+alias pacsu="sudo pacman -Su"
+alias pacsyu="yaourt -Syu --aur"
 alias tmuxa="tmux attach"
+alias shad="env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+alias pg="ps aux | grep"
 
-# User configuration
-
-eval $(thefuck --alias)
-
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-[[ -s /home/sice/.autojump/etc/profile.d/autojump.sh ]] && source /home/sice/.autojump/etc/profile.d/autojump.sh
-
-bindkey '^ ' autosuggest-accept
-
-if [[ ($COLORTERM == gnome-terminal || $(cat /proc/$PPID/cmdline) == *gnome-terminal* )
-		&& $TERM != screen* ]]; then
-		export TERM=xterm-256color
-fi
-
-if [ -n "$WINDOWID" ]; then
-		TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 80 / 100)))
-		xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"
-fi
-
-# virtualenvwrapper
-if [ -f /usr/bin/virtualenvwrapper.sh ]; then
-	export WORKON_HOME=$HOME/.virtualenvs
-	source /usr/bin/virtualenvwrapper.sh
-fi
-
-autoload -U compinit && compinit
-
-#source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

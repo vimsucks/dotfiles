@@ -214,7 +214,7 @@ bindsym --release $mod+z exec maim -s ~/Pictures/Screenshots/$(date +%F-%T).png 
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:WenQuanYi Micro Hei 11
 #font pango:Fira Code Retina, FontAwesome 11
-#font pango:Fira Code Retina, FontAwesome 11
+#font pango:WenQuanYi Micro Hei, FontAwesome 11
 font pango:Hack, FontAwesome 11
 
 # 窗口颜色                边框    背景    文字    提示

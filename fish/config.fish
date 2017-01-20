@@ -54,6 +54,7 @@ function ialias -d "set alias in an intelligent way."
     eval "function $argv[1]; $argv[2..-1] \$argv; end"
 end
 # alias
+ialias t "todo.sh"
 ialias youp "you-get -p smplayer"
 ialias c11 "clang++ -std=c++11 -Wall -Weffc++ -Wextra -pedantic -O3"
 ialias pacs "sudo pacman -S"
