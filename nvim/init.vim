@@ -7,8 +7,12 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 "
 "==========================================================================================
 call plug#begin('~/.config/nvim/plugged')
-Plug 'Valloric/YouCompleteMe' ", { 'for' : ['c', 'cs', 'python', 'cpp', 'go', 'javascript'] }
+" Plug 'Valloric/YouCompleteMe' ", { 'for' : ['c', 'cs', 'python', 'cpp', 'go', 'javascript'] }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neco-vim'
 Plug 'w0rp/ale' " linter
+Plug 'skywind3000/asyncrun.vim'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
 Plug 'Yggdroot/indentLine'  " 缩进对齐线
@@ -19,6 +23,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'tasklist.vim'
 Plug 'dracula/vim'
+Plug 'mhinz/vim-janah'
 Plug 'fcitx.vim'
 Plug 'mhinz/vim-signify'  " show git diff
 call plug#end()
@@ -53,7 +58,8 @@ set shortmess=atI
 set t_Co=256
 syntax on
 set background=dark
-colorscheme dracula
+" colorscheme dracula
+colorscheme janah
 set cursorline
 set cursorcolumn
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -111,6 +117,15 @@ set shell=zsh
 
 "==========================================================================================
 "
+"                                 Enviroment Settings
+"                                 
+"==========================================================================================
+"
+let g:python_host_prog = "/home/vimsucks/.virtualenv/neovim2/bin/python2.7"
+let g:python3_host_prog = "/home/vimsucks/.virtualenv/neovim3/bin/python3.6"
+
+"==========================================================================================
+"
 "                                 Buffer Settings
 "                                 
 "==========================================================================================
@@ -124,40 +139,42 @@ autocmd! TermOpen * set nobuflisted
 "==========================================================================================
 
 " YCM
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_min_num_identifier_candidate_chars = 0
-let g:ycm_auto_trigger = 1
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '!!'
-let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_always_populate_location_list = 1
-let g:ycm_python_binary_path = "python"
-set completeopt-=preview
+"let g:ycm_min_num_of_chars_for_completion = 2
+"let g:ycm_min_num_identifier_candidate_chars = 0
+"let g:ycm_auto_trigger = 1
+"let g:ycm_error_symbol = '>>'
+"let g:ycm_warning_symbol = '!!'
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_always_populate_location_list = 1
+"let g:ycm_python_binary_path = "python"
+"set completeopt-=preview
+
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" ale
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_linters = {
+      \ 'python3': ['flake8'],
+      \}
+
 
 " auto-pairs
 autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
 let g:AutoPairsMapSpace = 0
 
 let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
-"Airline
+" lightline
+let g:airline_theme = "wombat"
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'dracula'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#tagbar#flags = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#ycm#error_symbol = 'E:'
-let g:airline#extensions#ycm#warning_symbol = 'W:'
-let g:airline#extensions#tabline#excludes = ["term://.*"]
 
 " tasklist
 let g:tlTokenList = ["FIXME", "TODO"]
