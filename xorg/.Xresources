@@ -35,7 +35,8 @@ rofi.separator-style:                none
 !rofi.font:            Comic\ Sans\ MS 13
 !rofi.font:            Comic\ Neue\ Bold 13
 !rofi.font:            Comic\ Neue, FontAwesome Bold 13
-rofi.font:            Comic\ Neue, FontAwesome 13
+!rofi.font:            Comic\ Neue, FontAwesome 13
+rofi.font:            Inziu\ Iosevka\ Slab\ SC, FontAwesome 13
 rofi.terminal:        st
 rofi.combi-modi:            window,drun
 rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft,Super+d

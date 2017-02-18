@@ -66,6 +66,7 @@ for_window [class="jetbrains-idea"] move container to workspace $WS3
 for_window [class="Google-chrome"] move container to workspace $WS2
 for_window [class="Thunderbird"] move container to workspace $WS5
 for_window [class="Pidgin"] floating enable, border normal
+for_window [class="QQ.exe"] move container to workspace $WS7, floating enable, border normal
 for_window [title="Google Keep"] floating enable, border normal
 #for_window [class="VirtualBox"] move container to workspace $WS6
 #for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] move container to workspace $WS1, fullscreen disable, floating enable, border normal, resize set 640 480
@@ -318,7 +319,7 @@ mode "$mode_gaps_outer" {
 set $mode_rofi ROFI: WIFI(N) 剪贴板(C) 搜索网页(S) 显示器(M)
 bindsym $mod+semicolon mode "$mode_rofi"
 mode "$mode_rofi" {
-    bindsym --release n exec --no-startup-id nmcli_dmenu, mode "default"
+    bindsym --release n exec --no-startup-id networkmanager_dmenu, mode "default"
     bindsym --release c exec --no-startup-id clipmenu, mode "default"
     bindsym --release s exec --no-startup-id rofi-surfraw, mode "default"
     bindsym --release m exec --no-startup-id monitor_layout.sh, mode "default"
