@@ -22,6 +22,9 @@ SPACESHIP_XCODE_SHOW=false
 SPACESHIP_PYENV_SHOW=false
 SPACESHIP_SWIFT_SHOW=false
 
+# automatically find new executables
+zstyle ':completion:*' rehash true
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -106,7 +109,7 @@ alias pacr="sudo pacman -Rsc"
 alias pacsu="sudo pacman -Su"
 alias pacsyu="yaourt -Syu --aur"
 alias tmuxa="tmux attach"
-alias shad="env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+alias ssp="env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
 alias pg="ps aux | grep"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

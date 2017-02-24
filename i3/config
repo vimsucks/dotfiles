@@ -192,9 +192,11 @@ mode "$mode_system" {
 }
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+     #Raise sound Vol.
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-     #Decrease sound Vol.
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master 1+ toggle  #Toggle mute
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id xbacklight +10 && pkill -RTMIN+8 i3blocks    #Raise backlight.
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id xbacklight -10 && pkill -RTMIN+8 i3blocks    #Lower backlight.
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+ && pkill -RTMIN+7 i3blocks    #Raise sound Vol.
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%- && pkill -RTMIN+7 i3blocks    #Decrease sound Vol.
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master 1+ toggle && pkill -RTMIN+7 i3blocks   #Toggle mute
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
