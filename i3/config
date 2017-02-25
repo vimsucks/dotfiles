@@ -222,7 +222,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:Inziu Iosevka Slab SC, FontAwesome 11
 
 # 窗口颜色                边框    背景    文字    提示
-client.focused          #333333 #26C6DA #FFFFFF #333333
+client.focused          #333333 #26A69A #FFFFFF #333333
 client.focused_inactive #999999 #999999 #FFFFFF #3399FF
 client.unfocused        #999999 #999999 #FFFFFF #3399FF
 client.urgent           #990000 #990000 #FFFFFF #990000
