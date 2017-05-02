@@ -29,7 +29,7 @@ call plug#end()
 "                              General Settings                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Author Info
+" Author
 let g:username="vimsucks"
 let g:email="dev@vimsucks.com"
 
@@ -71,10 +71,10 @@ set whichwrap+=<,>,h,l
 
 "Tab and indent
 "set expandtab " 用空格键代替制表符
-set tabstop=2 " 制表符占2个空格大小
+set tabstop=4 " 制表符占2个空格大小
 set smarttab
-set shiftwidth=2 " 默认缩进2个空格大小
-set softtabstop=2
+set shiftwidth=4 " 默认缩进2个空格大小
+set softtabstop=4
 set autoindent
 "set cindent " C风格的缩进
 
@@ -124,9 +124,7 @@ set shell=zsh
 "                                 Enviroment                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:python_host_skip_check=1
 let g:python_host_prog = "/home/vimsucks/.virtualenv/neovim2/bin/python"
-let g:python3_host_skip_check=1
 let g:python3_host_prog = "/home/vimsucks/.virtualenv/neovim3/bin/python"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

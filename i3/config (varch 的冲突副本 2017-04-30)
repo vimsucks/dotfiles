@@ -211,9 +211,6 @@ bindsym --release $mod+z exec maim -s ~/Pictures/Screenshots/$(date +%F-%T).png
 #bindsym $mod+space exec ~/Scripts/toggle-im.sh
 
 
-# Other
-bindsym $mod+Shift+p exec DISPLAY=:0.0 change-wallpaper.sh
-
 ############################# 主题相关 ###############################
 
 # 字体
@@ -242,7 +239,7 @@ bar {
 		#status_command conky -c /home/vimsucks/.config/i3/conkyrc
 		#status_command i3blocks
 		#status_command i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
-		status_command SCRIPT_DIR=/home/vimsucks/.config/i3/i3blocks-scripts i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
+		status_command SCRIPT_DIR=/home/vimsucks/Scripts/i3blocks i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
 
 		height 24
 		output eDP1
@@ -333,3 +330,4 @@ mode "$mode_rofi" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
