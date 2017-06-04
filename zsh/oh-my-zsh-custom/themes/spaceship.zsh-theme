@@ -229,7 +229,8 @@ spaceship_venv_status() {
   [[ $SPACESHIP_VENV_SHOW == false ]] && return
 
   # Check if the current directory running via Virtualenv
-  [ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
+  # [ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
+  [ -n "$VIRTUAL_ENV" ] || return
 
   # Do not show venv prefix if prefixes are disabled
   [[ $SPACESHIP_PREFIX_SHOW == true ]] && echo -n "%B${SPACESHIP_PREFIX_VENV}%b" || echo -n ' '

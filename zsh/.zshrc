@@ -115,5 +115,9 @@ alias ssp="env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.
 alias pg="ps aux | grep"
 alias cmdx="chmod +x"
 
+# Key bindings
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /usr/share/nvm/init-nvm.sh

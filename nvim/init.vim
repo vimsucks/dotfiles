@@ -12,6 +12,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'aperezdc/vim-template'
 Plug 'w0rp/ale' " linter
+Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
 Plug 'Yggdroot/indentLine'  " 缩进对齐线
@@ -163,6 +164,10 @@ let g:ale_linters = {
       \ 'asm': [],
       \}
 
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave=1
+
 
 " auto-pairs
 autocmd FileType scheme let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`'}
@@ -219,7 +224,8 @@ function! CompileAndRun()
   elseif &filetype == "cpp"
     exec "te clang++ -Wall -Weffc++ -Wextra -O3 -pedantic -std=c++11 % -o /tmp/a.out && /tmp/a.out"
   elseif &filetype == "go"
-    exec "te go run %"
+    "exec "te go run %"
+    exec "te go run ./*.go"
   elseif &filetype == "java"
     exec "te javac % -d /tmp/ && java -cp /tmp/ %:t:r"
   elseif &filetype == "python"
