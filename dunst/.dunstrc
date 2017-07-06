@@ -6,7 +6,8 @@
     indicate_hidden = yes
     # geometry = "x5"
     idle_threshold = 0
-    geometry = "300x5-20+20"
+    #geometry = "300x5-20+20"
+    geometry = "300x5-0-24"
     alignment = center
     icon_position = left
     shrink = no

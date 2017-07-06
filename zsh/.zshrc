@@ -67,7 +67,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(warhol git autojump virtualz gitignore virtualenvwrapper zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(warhol git autojump virtualz gitignore zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,24 +100,32 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
+# alias zshconfig="nvim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias npm="snpm"
 alias youp="you-get -p bomi"
 alias c11="clang++ -std=c++11 -Wall -Weffc++ -Wextra -pedantic -O3"
-alias pacs="sudo pacman -S"
 alias pacr="sudo pacman -Rsc"
 alias pacsu="sudo pacman -Su"
 alias pacsyu="yaourt -Syu --aur"
 alias pacsyut="yaourt -Syu --aur --tmp ~/Pkg"
 alias pacsyutn="yaourt -Syu --aur --tmp ~/Pkg --noconfirm"
 alias tmuxa="tmux attach"
-alias ssp="env https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+alias ssp="https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+alias sspa="https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\" aria2c"
 alias pg="ps aux | grep"
 alias cmdx="chmod +x"
 
 # Key bindings
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
+#bindkey "^P" up-line-or-search
+#bindkey "^N" down-line-or-search
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
+
+nvm() {
+	SPACESHIP_NVM_SHOW=true
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+}
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

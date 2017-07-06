@@ -8,11 +8,14 @@ autocmd! bufwritepost .nvimrc source $MYVIMRC
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Valloric/YouCompleteMe'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/neco-vim' " deoplete complete source for vimL
+"Plug 'carlitux/deoplete-ternjs' " deoplete complete source for javascript
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'aperezdc/vim-template'
 Plug 'w0rp/ale' " linter
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdcommenter'  " 快速注释/反注释
 Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, quotes
 Plug 'Yggdroot/indentLine'  " 缩进对齐线
@@ -21,7 +24,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'joshdick/onedark.vim'
-Plug 'fcitx.vim'
 Plug 'mhinz/vim-signify'  " show git diff
 call plug#end()
 
@@ -71,11 +73,11 @@ set backspace=2
 set whichwrap+=<,>,h,l
 
 "Tab and indent
-"set expandtab " 用空格键代替制表符
-set tabstop=2 " 制表符占2个空格大小
+set expandtab " 用空格键代替制表符
+set tabstop=4 " 制表符占2个空格大小
 set smarttab
-set shiftwidth=2 " 默认缩进2个空格大小
-set softtabstop=2
+set shiftwidth=4 " 默认缩进2个空格大小
+set softtabstop=4
 set autoindent
 "set cindent " C风格的缩进
 
@@ -150,6 +152,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_always_populate_location_list = 1
 set completeopt-=preview
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<C-j>'
