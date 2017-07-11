@@ -1,11 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export GOPATH=~/.go
-export WORKON_HOME=~/.virtualenvs
-export PATH=$HOME/Scripts:$HOME/.local/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.node_modules/bin:/opt/android-sdk/platform-tools:$GOPATH/bin:$PATH
-export WORKON_HOME=$HOME/.virtualenv # virtualenv path
-export EDITOR=nvim
-export ANDROID_HOME=/opt/android-sdk
+#export GOPATH=~/go
+#export WORKON_HOME=~/.virtualenvs
+#export PATH=$HOME/Scripts:$HOME/.local/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.node_modules/bin:/opt/android-sdk/platform-tools:$GOPATH/bin:$PATH
+#export WORKON_HOME=$HOME/.virtualenv # virtualenv path
+#export EDITOR=nvim
+#export ANDROID_HOME=/opt/android-sdk
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -112,6 +112,7 @@ alias pacsyut="yaourt -Syu --aur --tmp ~/Pkg"
 alias pacsyutn="yaourt -Syu --aur --tmp ~/Pkg --noconfirm"
 alias tmuxa="tmux attach"
 alias ssp="https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\""
+alias sspl="https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\" fc -e : -1"
 alias sspa="https_proxy=\"http://127.0.0.1:7777/\" http_proxy=\"http://127.0.0.1:7777/\" aria2c"
 alias pg="ps aux | grep"
 alias cmdx="chmod +x"

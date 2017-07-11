@@ -18,6 +18,7 @@
 #exec --no-startup-id sleep 1;and bash transset-df -n i3bar 0.65
 # 建议另外指定一个脚本来启动通用的开机自启项目
 exec --no-startup-id i3-startup.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # => 设定mod键与工作区名
 set $mod  Mod4
@@ -186,12 +187,12 @@ set $mode_system 系统:锁屏(L) 注销(O) 休眠(S) 关机(H) 重启(R) 取消
 bindsym $mod+p mode "$mode_system"
 mode "$mode_system" {
     #bindsym l exec i3lock -c '#333333', exec sleep .1 && exec xset dpms force off, mode "default"
-		bindsym l exec bash i3lock-wrapper -nuel, exec sleep .1 && exec xset dpms force off, mode "default"
+    bindsym l exec bash i3lock-wrapper -nuel, exec sleep .1 && exec xset dpms force off, mode "default"
     bindsym o exec i3-preexit.sh, exec i3-msg exit
-		#bindsym s exec bash i3lock-wrapper -nuel; exec systemctl hibernate , mode "default"
-		bindsym s exec systemctl hibernate , mode "default"
+    #bindsym s exec bash i3lock-wrapper -nuel; exec systemctl hibernate , mode "default"
+    bindsym s exec systemctl hibernate , mode "default"
     #bindsym h exec systemctl poweroff
-		bindsym h mode "$confirm_poweroff"
+    bindsym h mode "$confirm_poweroff"
     bindsym r exec systemctl reboot
     bindsym Escape mode "default"
 }
@@ -250,49 +251,54 @@ client.background       #FFFFFF
 
 # i3bar
 bindsym $mod+m bar mode toggle
-set $transparent #00000000
+set $transparent #222222A0
+bar {
+    mode invisible
+}
 bar {
     # i3bar调用
-		#
-		i3bar_command i3bar -t
-		#status_command conky -c /home/vimsucks/.config/i3/conkyrc
-		#status_command i3blocks
-		#status_command i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
-		status_command SCRIPT_DIR=/home/vimsucks/.config/i3/i3blocks-scripts i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
+        #
+    i3bar_command i3bar -t
+    #status_command conky -c /home/vimsucks/.config/i3/conkyrc
+    #status_command i3blocks
+    #status_command i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
+    status_command SCRIPT_DIR=/home/vimsucks/.config/i3/i3blocks-scripts i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
 
-		height 24
-		output eDP1
-		output HDMI1
-		tray_output primary
-		#tray_output eDP1
+    height 24
+    output eDP1
+    output HDMI1
+    tray_output primary
+    #tray_output eDP1
     tray_padding 0
     # 显示位置
-		position bottom
+        position bottom
     # 是否隐藏
-    #mode hide
+    # mode invisible
     # 显示/隐藏切换键
     #modifier 
     # 拆解工作区名（隐藏前面的1:2:3:……）
     strip_workspace_numbers no
     # 定义分隔符（适用于i3status）
     #separator_symbol  
-		colors {
-				#background #37474F
-        background $transparent
-				statusline #FFFFFF
-				separator  #3399FF
-				# 工作区颜色         边框    背景    文字
-				#focused_workspace  #26A69A #26A69A #FFFFFF
-				#focused_workspace  $transparent $transparent #36A69A
-				focused_workspace  $transparent $transparent #76FF03
+        colors {
+            #background #37474F
+            background $transparent
+            #background #000000A0
+            statusline #FFFFFF
+            separator  #3399FF
+            # 工作区颜色         边框    背景    文字
+            #focused_workspace  #26A69A #26A69A #FFFFFF
+            focused_workspace  $transparent $transparent #1DE9B6
 
-				#active_workspace   #FFFFFF #37474F #FFFFFF
-				active_workspace $transparent $transparent #FFFFFF
-				#inactive_workspace #37474F #37474F #FFFFFF
-				inactive_workspace $transparent $transparent #FFFFFF
-				urgent_workspace   #990000 #990000 #FFFFFF
-				binding_mode       #26A69A #26A69A #FFFFFF
-		}
+
+            #active_workspace   #FFFFFF #37474F #FFFFFF
+            active_workspace $transparent $transparent #FFFFFF
+            #inactive_workspace #37474F #37474F #FFFFFF
+            inactive_workspace $transparent $transparent #FFFFFF
+            urgent_workspace   #990000 #990000 #FFFFFF
+            #binding_mode       #26A69A #26A69A #FFFFFF
+            binding_mode       #1DE9B6 $transparent #1DE9B6
+        }
 }
 ############################ i3-gaps #################################
 gaps inner 6
