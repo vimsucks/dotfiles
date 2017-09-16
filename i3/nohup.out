@@ -1,0 +1,149 @@
+Warning: 'allow_markup' is deprecated, please use 'markup' instead.
+Warning: The frame section is deprecated, width has been renamed to frame_width and moved to the global section.
+Warning: The frame section is deprecated, color has been renamed to frame_color and moved to the global section.
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:680:14: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:680:14: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:683:17: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:838:14: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:838:14: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:841:17: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:1257:14: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:1257:14: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:1261:17: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:2792:8: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:2792:18: Using Pango syntax for the font: style property is deprecated; please use CSS syntax
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:2797:8: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:2797:18: Using Pango syntax for the font: style property is deprecated; please use CSS syntax
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5694:12: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5694:12: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5715:18: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5715:18: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5817:12: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5819:16: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5819:16: Expected a string.
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5976:12: not a number
+
+(nm-applet:1963): Gtk-WARNING **: Theme parsing error: gtk.css:5976:12: Expected a string.
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 116 requests (111 known processed) with 0 events remaining.
+Gdk-Message: udiskie: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+
+libGL error: libGL error: failed to open drm device: Permission denied
+libGL error: failed to open drm device: Permission denied
+failed to load driver: i965
+libGL error: failed to load driver: i965
+Gdk-Message: nm-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+
+
+(process:3142): GLib-CRITICAL **: g_variant_unref: assertion 'value->ref_count > 0' failed
+Could not load icon: 'nm-signal-75'
+Could not load icon: 'nm-signal-75'
+Could not load icon: 'nm-signal-75'
+
+(process:3943): GLib-CRITICAL **: g_variant_unref: assertion 'value->ref_count > 0' failed
+Could not load icon: 'nm-signal-100'
+Could not load icon: 'nm-signal-100'
+Fcitx seems is not running
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-chttrans.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-remote-module.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xkb.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-classic-ui.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-clipboard.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-punc.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-pinyin-enhance.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-imselector.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-spell.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-dbus.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-x11.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-notificationitem.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-vk.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-autoeng.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-table.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-keyboard.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xkbdbus.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-freedesktop-notify.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-unicode.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-ipc.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-pinyin.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-qw.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-kimpanel-ui.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-fullwidth-char.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xim.conf
+(INFO-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-quickphrase.conf
+(WARN-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx-config/fcitx-config.c:922) Invalid Entry: line 14 missing '='
+
+(process:3943): GLib-CRITICAL **: g_variant_unref: assertion 'value->ref_count > 0' failed
+Could not load icon: 'nm-signal-100'
+Could not load icon: 'nm-signal-100'
+(ERROR-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/ime.c:432) fcitx-keyboard-cm-mmuock already exists
+(WARN-4210 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/frontend/xim/xim.c:161) Please set XMODIFIERS.
+Could not load icon: 'nm-signal-100'
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 141 requests (141 known processed) with 0 events remaining.
+Gdk-Message: nm-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+
+Fcitx seems is not running
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-chttrans.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-remote-module.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xkb.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-classic-ui.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-clipboard.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-punc.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-pinyin-enhance.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-imselector.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-spell.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-dbus.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-x11.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-notificationitem.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-vk.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-autoeng.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-table.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-keyboard.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xkbdbus.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-freedesktop-notify.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-unicode.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-ipc.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-pinyin.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-qw.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-kimpanel-ui.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-fullwidth-char.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-xim.conf
+(INFO-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/addon.c:151) Load Addon Config File:fcitx-quickphrase.conf
+(WARN-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx-config/fcitx-config.c:922) Invalid Entry: line 14 missing '='
+
+(process:19999): GLib-CRITICAL **: g_variant_unref: assertion 'value->ref_count > 0' failed
+(ERROR-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/lib/fcitx/ime.c:432) fcitx-keyboard-cm-mmuock already exists
+(WARN-20087 /var/tmp/portage/app-i18n/fcitx-4.2.9.1/work/fcitx-4.2.9.1/src/frontend/xim/xim.c:161) Please set XMODIFIERS.
+QDBusConnection: session D-Bus connection created before QCoreApplication. Application may misbehave.
+Warning: 'allow_markup' is deprecated, please use 'markup' instead.
+Warning: The frame section is deprecated, width has been renamed to frame_width and moved to the global section.
+Warning: The frame section is deprecated, color has been renamed to frame_color and moved to the global section.
+Can not lock /tmp/sogou-qimpanel:0.pid: Resource temporarily unavailable.
+Another instance of Dropbox (23160) is running!
+Fcitx is running correctly.
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 45 requests (45 known processed) with 0 events remaining.
+Gdk-Message: udiskie: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
+

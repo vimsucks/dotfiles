@@ -17,21 +17,21 @@
 # 设置透明须先安装xcompmgr，并在此指定软件和透明度（默认0.75），sleep保证transset在其所设置的软件之后启动，根据情况调节大小
 #exec --no-startup-id sleep 1;and bash transset-df -n i3bar 0.65
 # 建议另外指定一个脚本来启动通用的开机自启项目
-exec --no-startup-id i3-startup.sh
+exec --no-startup-id /home/vimsucks/Scripts/i3-startup.sh
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # => 设定mod键与工作区名
 set $mod  Mod4
-set $WS1  1:
-set $WS2  2:
-set $WS3  3:
-set $WS4  4:
-set $WS5  5:
-set $WS6  6:
-set $WS7  7: 
-set $WS8  8:
-set $WS9  9:
-set $WS0 10:
+set $WS1  1:🖋️
+set $WS2  2:🌍
+set $WS3  3:📃
+set $WS4  4:📂
+set $WS5  5:📧
+set $WS6  6:📚
+set $WS7  7:💬 
+set $WS8  8:📺
+set $WS9  9:🎮
+set $WS0 10:⚙️
 
 # => 工作区切换&智能启动（添加智能启动脚本~/bin/st 自动且不重复打开工作区相应程序）
 # 自动切换到新打开的窗口(需4.12版本支持)
@@ -56,10 +56,11 @@ focus_on_window_activation none
 # Layout Settings
 
 # => 快捷启动
-bindsym $mod+Return exec --no-startup-id st
-bindsym --release $mod+d exec "rofi -show combi -combi-mode window,ssh,drun"
+bindsym $mod+Return exec --no-startup-id termite
+bindsym --release $mod+d exec "rofi -show combi -combi-mode window,drun -pid /tmp/rofi.pid"
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+e      exec --no-startup-id thunar
+bindsym $mod+r      exec --no-startup-id emacsclient -nc
 
 # => 自定义窗口（支持定义边框类型，窗口布局，大小调整，自动归类工作区等等，多个定义用,隔开）
 for_window [ workspace="7" ] floating enable, border normal
@@ -77,11 +78,13 @@ for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] fullscreen 
 for_window [class="electronic-wechat"] move container to workspace $WS7
 for_window [class="TelegramDesktop"] move container to workspace $WS7, floating enable, border normal
 for_window [class="Pidgin"] move container to workspace $WS7, floating enable, border normal
-#for_window [class="netease-cloud-music"] move container to workspace $WS9
+for_window [class="netease-cloud-music"] move container to workspace $WS8
+for_window [title="Android Emulator - *"] floating enable, border normal
+for_window [class="Steam"] move container to workspace $WS9
 
 # => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）
 # 默认普通窗口的边框类型
-new_window pixel 3
+new_window pixel 4
 # 默认浮动窗口的边框类型
 new_float normal
 # 取消工作区边缘的边框
@@ -177,6 +180,7 @@ bindsym $mod+Shift+0 move container to workspace $WS0
 # 转换普通窗口为暂存窗口
 bindsym $mod+Shift+f move scratchpad
 # 呼出/隐藏暂存窗口
+#bindsym $mod+f scratchpad show, resize set 1366 800, move position 277 140
 bindsym $mod+f scratchpad show
 
 # => 重新载入（更改配置文件后只须重载即可生效，不包含自启部分）
@@ -193,16 +197,28 @@ mode "$mode_system" {
     bindsym s exec systemctl hibernate , mode "default"
     #bindsym h exec systemctl poweroff
     bindsym h mode "$confirm_poweroff"
-    bindsym r exec systemctl reboot
+    bindsym r mode "$confirm_reboot"
     bindsym Escape mode "default"
 }
+
 set $confirm_poweroff 确定关机？(y/n)
 mode "$confirm_poweroff" {
 	bindsym y exec systemctl poweroff
 	bindsym n mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
-bindsym XF86PowerOff exec systemctl hibernate
+set $confirm_reboot 确定重启？(y/n)
+mode "$confirm_reboot" {
+	bindsym y exec systemctl reboot
+	bindsym n mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+#bindsym XF86PowerOff exec systemctl hibernate
 
 # Volume control
 #bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id xbacklight +10 && pkill -RTMIN+8 i3blocks    #Raise backlight.
@@ -239,10 +255,10 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:Fira Code Retina, FontAwesome 11
 #font pango:WenQuanYi Micro Hei, FontAwesome 11
 #font pango:Hack, FontAwesome 11
-font pango:Inziu Iosevka Slab SC, FontAwesome 11
+font pango:Inziu Iosevka Slab SC, FontAwesome, strawberryicon 11
 
 # 窗口颜色                边框    背景    文字    提示
-client.focused          #333333 #26A69A #FFFFFF #333333
+client.focused          #333333 #268bd2 #FFFFFF #333333
 client.focused_inactive #999999 #999999 #FFFFFF #3399FF
 client.unfocused        #999999 #999999 #FFFFFF #3399FF
 client.urgent           #990000 #990000 #FFFFFF #990000
@@ -250,8 +266,9 @@ client.placeholder      #000000 #000000 #FFFFFF #000000
 client.background       #FFFFFF
 
 # i3bar
-bindsym $mod+m bar mode toggle
-set $transparent #222222A0
+#bindsym $mod+m bar mode toggle
+#set $transparent #222222A0
+set $transparent #00000000
 bar {
     mode invisible
 }
@@ -268,10 +285,11 @@ bar {
     output eDP1
     output HDMI1
     tray_output primary
+    #tray_output HDMI1
     #tray_output eDP1
     tray_padding 0
     # 显示位置
-        position bottom
+    position bottom
     # 是否隐藏
     # mode invisible
     # 显示/隐藏切换键
@@ -288,7 +306,7 @@ bar {
             separator  #3399FF
             # 工作区颜色         边框    背景    文字
             #focused_workspace  #26A69A #26A69A #FFFFFF
-            focused_workspace  $transparent $transparent #1DE9B6
+            focused_workspace  $transparent $transparent #268bd2
 
 
             #active_workspace   #FFFFFF #37474F #FFFFFF
@@ -297,7 +315,7 @@ bar {
             inactive_workspace $transparent $transparent #FFFFFF
             urgent_workspace   #990000 #990000 #FFFFFF
             #binding_mode       #26A69A #26A69A #FFFFFF
-            binding_mode       #1DE9B6 $transparent #1DE9B6
+            binding_mode       #1DE9B6 $transparent #268bd2
         }
 }
 ############################ i3-gaps #################################
@@ -348,15 +366,16 @@ mode "$mode_gaps_outer" {
 #for_window [class="^.*"] border pixel 0
 #for_window [class="(?i)urxvt"] border pixel 3
 
-set $mode_rofi ROFI: WIFI(N) 剪贴板(C) 搜索网页(S) 显示器(M) 自动调整显示(R) 开关内置键盘(K)
+set $mode_rofi ROFI: 剪贴板(C) 教务管理系统(J) 开关内置键盘(K) 显示器(M) WIFI(N) 自动调整显示(R) 搜索网页(S)
 bindsym $mod+semicolon mode "$mode_rofi"
 mode "$mode_rofi" {
-    bindsym --release n exec --no-startup-id networkmanager_dmenu, mode "default"
     bindsym --release c exec --no-startup-id clipmenu, mode "default"
-    bindsym --release s exec --no-startup-id rofi-surfraw, mode "default"
-    bindsym --release m exec --no-startup-id monitor_layout.sh, mode "default"
-    bindsym --release r exec --no-startup-id auto-randr.sh, mode "default"
+    bindsym --release j exec --no-startup-id jwgl.py, mode "default"
     bindsym --release k exec --no-startup-id toggle-kbd.sh, mode "default"
+    bindsym --release s exec --no-startup-id rofi-surfraw, mode "default"
+    bindsym --release n exec --no-startup-id networkmanager_dmenu, mode "default"
+    bindsym --release r exec --no-startup-id auto-randr.sh, mode "default"
+    bindsym --release m exec --no-startup-id monitor_layout.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

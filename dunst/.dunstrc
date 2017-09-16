@@ -10,6 +10,9 @@
     geometry = "300x5-0-24"
     alignment = center
     icon_position = left
+    show_icons = yes
+    icon_folders = /usr/share/icons/Papirus/48x48/actions:/usr/share/icons/Papirus/48x48/animations:/usr/share/icons/Papirus/48x48/apps:/usr/share/icons/Papirus/48x48/devices:/usr/share/icons/Papirus/48x48/emblems:/usr/share/icons/Papirus/48x48/mimetypes:/usr/share/icons/Papirus/48x48/panel:/usr/share/icons/Papirus/48x48/places:/usr/share/icons/Papirus/48x48/status
+
     shrink = no
     transparency = 25
     show_age_threshold = 60
@@ -23,20 +26,20 @@
 
 
 [frame]
-    width = 3
+    width = 1
     color = "#47475c"
 
 [urgency_low]
-		foreground = "#b9c2cd"
-    background = "#2f343f"
+    foreground = "#586e75"
+    background = "#eee8d5"
     timeout = 2
 
 [urgency_normal]
-		foreground = "#ffffff"
-    background = "#666684"
+    foreground = "#002b36"
+    background = "#eee8d5"
     timeout = 4
 
 [urgency_critical]
-		background = "#2f343f"
-    foreground = "#34e2d4"
+    foreground = "#dc322f"
+    background = "#eee8d5"
     timeout = 0
