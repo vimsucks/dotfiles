@@ -268,9 +268,9 @@ endfunction
 "                                 Templates                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd BufNewFile *.py :call PythonTemplate()
-autocmd BufNewFile *.cpp :call CPPTemplate()
-autocmd BufNewFile *.sh :call ShTemplate()
+"autocmd BufNewFile *.py :call PythonTemplate()
+"autocmd BufNewFile *.cpp :call CPPTemplate()
+"autocmd BufNewFile *.sh :call ShTemplate()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Shortcuts                                  "

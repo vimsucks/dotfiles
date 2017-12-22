@@ -17,6 +17,7 @@
 # 设置透明须先安装xcompmgr，并在此指定软件和透明度（默认0.75），sleep保证transset在其所设置的软件之后启动，根据情况调节大小
 #exec --no-startup-id sleep 1;and bash transset-df -n i3bar 0.65
 # 建议另外指定一个脚本来启动通用的开机自启项目
+exec --no-startup-id /home/vimsucks/Scripts/flexmo.sh
 exec --no-startup-id /home/vimsucks/Scripts/i3-startup.sh
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -57,6 +58,7 @@ focus_on_window_activation none
 
 # => 快捷启动
 bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Control+Return exec --no-startup-id termite -e "tmux attach"
 bindsym --release $mod+d exec "rofi -show combi -combi-mode window,drun -pid /tmp/rofi.pid"
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+e      exec --no-startup-id thunar
@@ -64,6 +66,7 @@ bindsym $mod+r      exec --no-startup-id emacsclient -nc
 
 # => 自定义窗口（支持定义边框类型，窗口布局，大小调整，自动归类工作区等等，多个定义用,隔开）
 for_window [ workspace="7" ] floating enable, border normal
+for_window [class="copyq"] floating enable, border normal
 #for_window [class="jetbrains-studio"] move container to workspace $WS3
 #for_window [class="jetbrains-pycharm"] move container to workspace $WS3
 #for_window [class="jetbrains-idea"] move container to workspace $WS3
@@ -78,9 +81,12 @@ for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] fullscreen 
 for_window [class="electronic-wechat"] move container to workspace $WS7
 for_window [class="TelegramDesktop"] move container to workspace $WS7, floating enable, border normal
 for_window [class="Pidgin"] move container to workspace $WS7, floating enable, border normal
-for_window [class="netease-cloud-music"] move container to workspace $WS8
+for_window [class="netease-cloud-music"] move container to workspace $WS8, floating enable
 for_window [title="Android Emulator - *"] floating enable, border normal
-for_window [class="Steam"] move container to workspace $WS9
+for_window [class="Steam"] move container to workspace $WS9, floating enable, border normal
+#for_window [class="jetbrains-idea"] move container to workspace $WS3
+for_window [class="jetbrains-*"] move container to workspace $WS3
+for_window [class="Transmission-gtk" ] move container to workspace $WS4
 
 # => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）
 # 默认普通窗口的边框类型
@@ -184,18 +190,19 @@ bindsym $mod+Shift+f move scratchpad
 bindsym $mod+f scratchpad show
 
 # => 重新载入（更改配置文件后只须重载即可生效，不包含自启部分）
-bindsym $Mod+Shift+r exec auto-randr.sh && restart
+#bindsym $Mod+Shift+r exec auto-randr.sh && restart
+#bindsym $mod+Shift+r exec auto-randr.sh && reload
+bindsym $mod+Control+r reload
+bindsym $mod+Shift+r exec flexmo.sh && echo 233 >> /tmp/fuck.log
 
 # => 电源管理（Pause Break键呼出)
-set $mode_system 系统:锁屏(L) 注销(O) 休眠(S) 关机(H) 重启(R) 取消(Esc)
+set $mode_system 系统:自动锁屏(A) 锁屏(L) 注销(O) 休眠(S) 关机(H) 重启(R) 取消(Esc)
 bindsym $mod+p mode "$mode_system"
 mode "$mode_system" {
-    #bindsym l exec i3lock -c '#333333', exec sleep .1 && exec xset dpms force off, mode "default"
-    bindsym l exec bash i3lock-wrapper -nuel, exec sleep .1 && exec xset dpms force off, mode "default"
+    bindsym a exec /home/vimsucks/Scripts/toggle-xautolock.sh && pkill -RTMIN+9 i3blocks, mode "default"
+    bindsym l exec --no-startup-id  /home/vimsucks/Scripts/lock.sh, mode "default"
     bindsym o exec i3-preexit.sh, exec i3-msg exit
-    #bindsym s exec bash i3lock-wrapper -nuel; exec systemctl hibernate , mode "default"
     bindsym s exec systemctl hibernate , mode "default"
-    #bindsym h exec systemctl poweroff
     bindsym h mode "$confirm_poweroff"
     bindsym r mode "$confirm_reboot"
     bindsym Escape mode "default"
@@ -218,7 +225,7 @@ mode "$confirm_reboot" {
 }
 
 
-#bindsym XF86PowerOff exec systemctl hibernate
+bindsym XF86PowerOff exec --no-startup-id nofity-send "Power Button Pressed"
 
 # Volume control
 #bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id xbacklight +10 && pkill -RTMIN+8 i3blocks    #Raise backlight.
@@ -244,9 +251,6 @@ bindsym --release $mod+z exec maim -s ~/Pictures/Screenshots/$(date +%F-%T).png
 bindsym Print exec auto-randr.sh && restart
 
 
-# Other
-bindsym $mod+Control+p exec DISPLAY=:0.0 change-wallpaper.sh
-
 ############################# 主题相关 ###############################
 
 # 字体
@@ -255,7 +259,8 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:Fira Code Retina, FontAwesome 11
 #font pango:WenQuanYi Micro Hei, FontAwesome 11
 #font pango:Hack, FontAwesome 11
-font pango:Inziu Iosevka Slab SC, FontAwesome, strawberryicon 11
+#font pango:Inziu Iosevka Slab SC, FontAwesome 11
+font pango:Inziu Iosevka Slab SC, FontAwesome 11
 
 # 窗口颜色                边框    背景    文字    提示
 client.focused          #333333 #268bd2 #FFFFFF #333333
@@ -268,7 +273,7 @@ client.background       #FFFFFF
 # i3bar
 #bindsym $mod+m bar mode toggle
 #set $transparent #222222A0
-set $transparent #00000000
+set $transparent #00000080
 bar {
     mode invisible
 }
@@ -281,13 +286,13 @@ bar {
     #status_command i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
     status_command SCRIPT_DIR=/home/vimsucks/.config/i3/i3blocks-scripts i3blocks -c /home/vimsucks/.config/i3/i3blocks.conf
 
-    height 24
+    height 22
     output eDP1
     output HDMI1
     tray_output primary
     #tray_output HDMI1
     #tray_output eDP1
-    tray_padding 0
+    tray_padding 1
     # 显示位置
     position bottom
     # 是否隐藏
